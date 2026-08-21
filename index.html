@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lamplight — project hub</title>
+<meta name="description" content="Design log and status hub for Lamplight, a fully deterministic graveyard puzzle game.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0e14'/%3E%3Ccircle cx='50' cy='46' r='22' fill='%23e8a94a'/%3E%3Cpath d='M38 70 L62 70 L57 88 L43 88 Z' fill='%23c9c2ac'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink: #0b0e14;
+    --ink-2: #12161f;
+    --ink-3: #1a2030;
+    --line: #2a3142;
+    --bone: #e9e3d2;
+    --bone-dim: #b7b0a0;
+    --bone-faint: #837c6f;
+    --lamp: #e8a94a;
+    --lamp-bright: #f4c878;
+    --rust: #b5533f;
+    --rust-bright: #d16a52;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(232,169,74,0.10), transparent 60%),
+      var(--ink);
+    color:var(--bone);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--lamp-bright);}
+  a:hover{color:var(--lamp);}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,14,20,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:14px;padding-bottom:14px;
+    max-width:960px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-size:1.05rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--bone);
+    text-decoration:none;
+    display:flex;align-items:center;gap:9px;
+  }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--lamp);
+    box-shadow:0 0 10px 3px rgba(232,169,74,0.55);
+  }
+  .navlinks{display:flex;gap:22px;font-size:0.85rem;}
+  .navlinks a{color:var(--bone-dim);text-decoration:none;letter-spacing:0.02em;}
+  .navlinks a:hover{color:var(--lamp-bright);}
+  @media (max-width:560px){ .navlinks{gap:14px;font-size:0.78rem;} }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    padding:88px 0 64px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; left:50%; top:-160px;
+    width:520px;height:520px;margin-left:-260px;
+    background:radial-gradient(circle, rgba(232,169,74,0.16), transparent 65%);
+    pointer-events:none;
+  }
+  .lamp-mark{
+    width:54px;height:54px;margin:0 auto 26px;
+    position:relative;
+  }
+  .lamp-mark::before{
+    content:"";
+    position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle, var(--lamp-bright), var(--lamp) 55%, transparent 75%);
+    box-shadow:0 0 40px 10px rgba(232,169,74,0.35);
+  }
+  h1.title{
+    font-family:var(--serif);
+    font-size:3.1rem;
+    letter-spacing:0.09em;
+    margin:0 0 14px;
+    color:var(--bone);
+    text-transform:uppercase;
+    position:relative;
+  }
+  .tagline{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.18rem;
+    color:var(--bone-dim);
+    max-width:600px;
+    margin:0 auto 28px;
+    position:relative;
+  }
+  .subline{
+    font-size:0.95rem;
+    color:var(--bone-faint);
+    max-width:520px;
+    margin:0 auto;
+    position:relative;
+  }
+  .subline strong{color:var(--lamp-bright);font-weight:600;}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0;border-top:1px solid var(--line);}
+  section.hero{border-top:none;}
+  h2.section-title{
+    font-family:var(--serif);
+    font-size:0.82rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--lamp);
+    margin:0 0 8px;
+  }
+  h3.section-sub{
+    font-family:var(--serif);
+    font-size:1.9rem;
+    color:var(--bone);
+    margin:0 0 28px;
+    font-weight:400;
+  }
+  p{color:var(--bone-dim);}
+  p.lede{font-size:1.08rem;color:var(--bone);}
+
+  .pull{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--lamp-bright);
+    border-left:2px solid var(--lamp);
+    padding:4px 0 4px 22px;
+    margin:30px 0;
+  }
+
+  /* ---------- phase tracker ---------- */
+  .phases{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:6px;
+    margin:32px 0 12px;
+  }
+  .phase{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:10px 6px 8px;
+    text-align:center;
+    font-size:0.68rem;
+  }
+  .phase .n{
+    display:block;
+    font-family:var(--serif);
+    font-size:1.15rem;
+    color:var(--bone-faint);
+    margin-bottom:3px;
+  }
+  .phase .label{color:var(--bone-faint);letter-spacing:0.02em;line-height:1.25;display:block;min-height:2.4em;}
+  .phase.current{
+    background:linear-gradient(180deg, rgba(232,169,74,0.14), rgba(232,169,74,0.04));
+    border-color:var(--lamp);
+  }
+  .phase.current .n{color:var(--lamp-bright);}
+  .phase.current .label{color:var(--bone);}
+  .phase.done .n{color:var(--bone-dim);}
+  .phase.done .label{color:var(--bone-faint);}
+  @media (max-width:700px){
+    .phases{grid-template-columns:repeat(4,1fr);}
+  }
+
+  .stamp{
+    display:inline-block;
+    font-family:var(--serif);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border:1.5px solid var(--rust-bright);
+    color:var(--rust-bright);
+    border-radius:3px;
+    transform:rotate(-1.5deg);
+    margin:18px 0 22px;
+  }
+
+  .statgrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:26px 0 8px;
+  }
+  .stat{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 16px;
+  }
+  .stat .num{
+    font-family:var(--serif);
+    font-size:1.9rem;
+    color:var(--bone);
+  }
+  .stat .num.bad{color:var(--rust-bright);}
+  .stat .num.ok{color:var(--lamp-bright);}
+  .stat .cap{font-size:0.78rem;color:var(--bone-faint);margin-top:4px;}
+  @media (max-width:640px){ .statgrid{grid-template-columns:1fr;} }
+
+  .diagnosis{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--rust-bright);
+    border-radius:0 8px 8px 0;
+    padding:18px 20px;
+    margin:24px 0;
+    font-size:0.95rem;
+  }
+  .diagnosis .k{
+    font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--rust-bright);margin-bottom:8px;display:block;
+  }
+
+  /* ---------- board ---------- */
+  .boardtabs{display:flex;gap:8px;margin-bottom:22px;}
+  .boardtabs input{display:none;}
+  .boardtabs label{
+    cursor:pointer;
+    padding:9px 16px;
+    border:1px solid var(--line);
+    border-radius:6px 6px 0 0;
+    font-size:0.82rem;
+    color:var(--bone-faint);
+    background:var(--ink-2);
+  }
+  #tab1:checked ~ .boardtabs label[for="tab1"],
+  #tab2:checked ~ .boardtabs label[for="tab2"]{
+    color:var(--lamp-bright);
+    border-color:var(--lamp);
+    background:var(--ink-3);
+  }
+  .boardpane{display:none;}
+  #tab1:checked ~ .pane1{display:block;}
+  #tab2:checked ~ .pane2{display:block;}
+
+  .board-layout{
+    display:flex;gap:32px;flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .grid6{
+    display:grid;
+    grid-template-columns:20px repeat(6,44px);
+    grid-template-rows:20px repeat(6,44px);
+    gap:3px;
+    font-family:var(--mono);
+    flex:none;
+  }
+  .grid6 .colhead, .grid6 .rowhead{
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.68rem;color:var(--bone-faint);
+  }
+  .cell{
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--ink-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.62rem;
+    color:var(--bone-faint);
+    position:relative;
+    text-align:center;
+    line-height:1.15;
+  }
+  .cell.plot{
+    background:repeating-linear-gradient(45deg, var(--ink-2), var(--ink-2) 4px, #191f2c 4px, #191f2c 8px);
+    border-style:dashed;
+    border-color:var(--bone-faint);
+    color:var(--bone-dim);
+  }
+  .cell.cairn{color:var(--rust-bright);border-color:var(--rust-bright);font-weight:600;}
+  .cell.tower{background:#05070b;color:var(--bone-faint);border-color:#000;}
+  .cell.gate{background:rgba(181,83,63,0.14);border-color:var(--rust-bright);color:var(--rust-bright);}
+  .cell.sexton{background:rgba(232,169,74,0.18);border-color:var(--lamp);color:var(--lamp-bright);font-weight:700;}
+  .cell.dog{background:rgba(232,169,74,0.09);border-color:var(--lamp-bright);color:var(--lamp-bright);font-weight:700;}
+  .cell small{display:block;font-size:0.56rem;color:inherit;opacity:0.8;}
+
+  .legend{
+    display:flex;flex-direction:column;gap:10px;
+    font-size:0.82rem;color:var(--bone-dim);
+    min-width:220px;flex:1;
+  }
+  .legend .item{display:flex;align-items:center;gap:10px;}
+  .legend .swatch{
+    width:20px;height:20px;border-radius:3px;flex:none;
+    border:1px solid var(--line);
+  }
+  .legend .swatch.plot{background:repeating-linear-gradient(45deg, var(--ink-2), var(--ink-2) 3px, #191f2c 3px, #191f2c 6px);border-style:dashed;border-color:var(--bone-faint);}
+  .legend .swatch.cairn{border-color:var(--rust-bright);background:var(--ink-2);}
+  .legend .swatch.tower{background:#05070b;}
+  .legend .swatch.gate{background:rgba(181,83,63,0.14);border-color:var(--rust-bright);}
+  .legend .swatch.sexton{background:rgba(232,169,74,0.18);border-color:var(--lamp);}
+  .legend .swatch.dog{background:rgba(232,169,74,0.09);border-color:var(--lamp-bright);}
+
+  .result-table{
+    width:100%;border-collapse:collapse;margin-top:26px;font-size:0.88rem;
+  }
+  .result-table th{
+    text-align:left;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--bone-faint);padding:8px 10px;border-bottom:1px solid var(--line);
+  }
+  .result-table td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--bone-dim);}
+  .result-table td.who{color:var(--bone);font-weight:600;}
+  .result-table tr.through td{color:var(--rust-bright);}
+  .result-table tr.through td.who{color:var(--rust-bright);}
+
+  .verdict{
+    margin-top:22px;padding:16px 18px;border-radius:8px;
+    background:var(--ink-2);border:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .verdict b{color:var(--lamp-bright);}
+
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;margin-top:10px;}
+  .timeline::before{
+    content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;
+    background:linear-gradient(var(--lamp), var(--line) 8%, var(--line) 92%, transparent);
+  }
+  .entry{position:relative;padding:0 0 40px 34px;}
+  .entry:last-child{padding-bottom:0;}
+  .entry::before{
+    content:"";position:absolute;left:0;top:4px;
+    width:15px;height:15px;border-radius:50%;
+    background:var(--ink);border:2px solid var(--lamp);
+  }
+  .entry .date{
+    font-family:var(--mono);font-size:0.74rem;color:var(--lamp);
+    letter-spacing:0.04em;margin-bottom:4px;
+  }
+  .entry h4{
+    font-family:var(--serif);font-weight:400;font-size:1.28rem;
+    color:var(--bone);margin:0 0 8px;
+  }
+  .entry p{margin:0 0 8px;font-size:0.95rem;}
+  .entry .finding{
+    font-size:0.86rem;color:var(--bone-faint);
+    border-left:2px solid var(--line);padding-left:12px;margin-top:10px;
+  }
+  .entry .finding b{color:var(--bone-dim);}
+  .entry .sha{
+    font-family:var(--mono);font-size:0.68rem;color:var(--bone-faint);
+    background:var(--ink-2);border:1px solid var(--line);
+    padding:2px 6px;border-radius:3px;margin-left:8px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:44px 0 60px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  footer p{font-size:0.82rem;color:var(--bone-faint);margin:4px 0;}
+  footer a{color:var(--bone-dim);}
+
+  ::selection{background:rgba(232,169,74,0.35);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>Lamplight</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#status">Status</a>
+      <a href="#board">The board</a>
+      <a href="#log">Dev log</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="lamp-mark"></div>
+    <h1 class="title">Lamplight</h1>
+    <p class="tagline">You keep the churchyard on the hill. Four nights a year, the ground gives things back.</p>
+    <p class="subline">A project status hub for Mike — what Amos has built, tested, and found so far.
+      <strong>Updated as of the last design session.</strong> No spin: if something failed, it says so here.</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">What this is</h2>
+    <h3 class="section-sub">A gravedigger, a dog, and no attack button</h3>
+
+    <p class="lede">Lamplight is a small puzzle game. You play the Sexton — the person who keeps a hillside
+      cemetery in order — on one of the four nights a year when what's buried gets up and starts walking.
+      You have a dog, a lantern, and a set of open graves. You have eight turns before dawn.</p>
+
+    <p><strong>There is no attack button.</strong> You can't hurt anything, and nothing can hurt you. The dead
+      simply walk, in a straight, predictable line, toward the gate at the bottom of the hill — and if enough
+      of them get there before sunrise, the town below loses. Your only tools are things a real gravedigger
+      would actually have: you can dig a grave, you can push something into an open one and fill it back in,
+      you can ring the bell to scatter a cluster of them, and your dog can stand somewhere and make anything
+      nearby reluctant to walk past her. That's the whole toolkit. Everything else is routing a problem
+      instead of removing it.</p>
+
+    <div class="pull">Nothing in this game is left to chance — not once, not ever.</div>
+
+    <p>That's the actual hook, and it's a hard rule the design isn't allowed to break: every single thing that
+      happens on the board — where a corpse walks, how it reacts to the dog, what order things move in — is
+      worked out by a fixed, printed formula, not a die roll. The lantern in your hand only lights a small
+      area around you; anything further off is still following the exact same rules, just off-screen. A
+      patient player with a pencil can work out, in advance, exactly what every last thing on the board is
+      going to do all night, lit or not. If you get surprised, that means you did the math wrong — never that
+      the game secretly rolled something behind your back. That constraint is what makes it a real puzzle
+      instead of a slot machine with sound effects, and it's Mike's own condition from the day this concept
+      was picked: <em>fully predetermined, even in the dark.</em></p>
+  </div>
+</section>
+
+<section id="status">
+  <div class="wrap">
+    <h2 class="section-title">Where things stand right now</h2>
+    <h3 class="section-sub">Phase 1 of 7 — proving the rules work on paper</h3>
+
+    <div class="phases">
+      <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
+      <div class="phase current"><span class="n">1</span><span class="label">Rules on paper</span></div>
+      <div class="phase"><span class="n">2</span><span class="label">Playable core, no art</span></div>
+      <div class="phase"><span class="n">3</span><span class="label">Boards that matter</span></div>
+      <div class="phase"><span class="n">4</span><span class="label">Look &amp; sound</span></div>
+      <div class="phase"><span class="n">5</span><span class="label">Full run</span></div>
+      <div class="phase"><span class="n">6</span><span class="label">v1 ships</span></div>
+      <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
+    </div>
+
+    <div class="stamp">Phase 1 — still open</div>
+
+    <p class="lede">Before any code gets written, the design has to prove it works on paper — that a person
+      hand-playing a board actually has a real decision to make almost every turn, not just busywork between
+      the two or three moves that actually matter. That's the bar the design set for itself, and honestly:
+      <strong>it hasn't cleared it yet.</strong></p>
+
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num ok">2</div>
+        <div class="cap">wasted turns allowed, out of 8, before the design is considered a fail</div>
+      </div>
+      <div class="stat">
+        <div class="num bad">3–4</div>
+        <div class="cap">wasted turns actually measured, across every version tried so far</div>
+      </div>
+      <div class="stat">
+        <div class="num">2</div>
+        <div class="cap">full test boards hand-played and audited turn by turn</div>
+      </div>
+    </div>
+
+    <p>"Wasted turn" means exactly what it sounds like: a turn where the gravedigger has nothing worthwhile to
+      do and is just walking somewhere, or waiting, because the game's own schedule leaves him with no live
+      choice. Both test boards played so far land at 3 or 4 such turns out of 8 — over the limit the design set
+      for itself before Mike ever saw a line of code.</p>
+
+    <div class="diagnosis">
+      <span class="k">Two different problems found, not one</span>
+      The first test board failed because the gravedigger's one big move — trapping something in an open
+      grave — was geometrically impossible to set up correctly, so he spent several turns just walking
+      nowhere useful. Giving him more speed made this <em>worse</em>, not better, because the real bottleneck
+      was never his speed — it was that his one useful position couldn't be reached in time no matter how fast
+      he moved. A second, purpose-built test board fixed that geometry and confirmed the grave-trap trick
+      works cleanly when it's set up right. But the wasted-turn count didn't drop — it's still stuck at 4,
+      for a completely different reason: that board simply doesn't throw enough things at the player at once
+      to keep both the gravedigger and the dog occupied across all eight turns.
+    </div>
+
+    <p>The honest read: the individual tools (digging, pushing, the dog, the bell) all check out and work
+      the way they're supposed to. What's still unproven is <em>pacing</em> — whether a board can be built that
+      keeps both pieces meaningfully busy for a full night. That's the next thing being tested, not a rules
+      rewrite. No code has been written yet; this is still entirely paper design, hand-solved with a pencil,
+      the same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
+  </div>
+</section>
+
+<section id="board">
+  <div class="wrap">
+    <h2 class="section-title">Screenshots of the playthrough</h2>
+    <h3 class="section-sub">There's no game to screenshot yet — so here's the board, hand-solved</h3>
+    <p>Nothing is coded yet, so there's no build to take a picture of. What exists instead is more useful for
+      judging the design: two 6×6 boards, fully specified, each hand-played move by move against the written
+      rules, with the reasoning behind every single step written down. Below is a diagram of both, and what
+      happened.</p>
+
+    <input type="radio" name="boardtab" id="tab1" checked>
+    <input type="radio" name="boardtab" id="tab2">
+    <div class="boardtabs">
+      <label for="tab1">Board 01 — Michaelmas</label>
+      <label for="tab2">Board 02 — All Souls</label>
+    </div>
+
+    <div class="boardpane pane1">
+      <div class="board-layout">
+        <div class="grid6" aria-hidden="true">
+          <div></div>
+          <div class="colhead">A</div><div class="colhead">B</div><div class="colhead">C</div>
+          <div class="colhead">D</div><div class="colhead">E</div><div class="colhead">F</div>
+
+          <div class="rowhead">1</div>
+          <div class="cell cairn">cairn<small>Drowned Girl · T2</small></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell cairn">cairn<small>Parson Wake · T3</small></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="rowhead">2</div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+
+          <div class="rowhead">3</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell tower">bell<br>tower</div>
+          <div class="cell sexton">Sexton<small>start</small></div>
+          <div class="cell"></div>
+          <div class="cell cairn">cairn<small>Carter · T1</small></div>
+
+          <div class="rowhead">4</div>
+          <div class="cell"></div>
+          <div class="cell dog">Dog<small>start</small></div>
+          <div class="cell plot">plot</div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="rowhead">5</div>
+          <div class="cell cairn">cairn<small>Widow Ash · T6</small></div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell cairn">cairn<small>Ostler · T5</small></div>
+
+          <div class="rowhead">6</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell gate">gate</div>
+          <div class="cell gate">gate</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+
+        <div class="legend">
+          <div class="item"><span class="swatch plot"></span>Diggable grave plot (6 total)</div>
+          <div class="item"><span class="swatch cairn"></span>Where something rises, and when</div>
+          <div class="item"><span class="swatch tower"></span>Bell tower — rings, doesn't move</div>
+          <div class="item"><span class="swatch gate"></span>Town gate — losing too many here ends the night</div>
+          <div class="item"><span class="swatch sexton"></span>You (the Sexton) start here</div>
+          <div class="item"><span class="swatch dog"></span>The dog starts here</div>
+        </div>
+      </div>
+
+      <table class="result-table">
+        <thead><tr><th>What rose</th><th>What happened to it</th></tr></thead>
+        <tbody>
+          <tr class="through"><td class="who">the Carter</td><td>let through the gate on purpose, turn 5 — the correct, deliberate concession</td></tr>
+          <tr><td class="who">Parson Wake</td><td>trapped and buried, turn 6</td></tr>
+          <tr><td class="who">the Drowned Girl</td><td>turned back by the dog, turn 4 — never reached the gate</td></tr>
+          <tr><td class="who">the Ostler</td><td>blocked, then turned back by the dog — stopped short</td></tr>
+          <tr><td class="who">Widow Ash</td><td>turned back by the dog — one step from the gate at dawn</td></tr>
+        </tbody>
+      </table>
+
+      <div class="verdict">
+        <b>Survived the night</b> — one thing let through on purpose, against a limit of two. Five of the
+        six graves were never used, which is exactly the ratio the design wants: most nights should be won
+        by herding and blocking, not by digging. <b>But:</b> the audit found 3 turns out of 8 where the
+        gravedigger had nothing worthwhile to do — one over the limit. Re-tested twice since with different
+        fixes; both retests made it worse (4 dead turns), for reasons written up in the log below.
+      </div>
+    </div>
+
+    <div class="boardpane pane2">
+      <div class="board-layout">
+        <div class="grid6" aria-hidden="true">
+          <div></div>
+          <div class="colhead">A</div><div class="colhead">B</div><div class="colhead">C</div>
+          <div class="colhead">D</div><div class="colhead">E</div><div class="colhead">F</div>
+
+          <div class="rowhead">1</div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell cairn">cairn<small>Verger · T1</small></div>
+
+          <div class="rowhead">2</div>
+          <div class="cell cairn">cairn<small>Beadle · T2</small></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell cairn">cairn<small>Clerk · T3</small></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="rowhead">3</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell tower">bell<br>tower</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="rowhead">4</div>
+          <div class="cell plot" style="outline:2px solid var(--lamp);outline-offset:-2px;">plot<small>on the edge</small></div>
+          <div class="cell sexton">Sexton<small>start</small></div>
+          <div class="cell dog">Dog<small>start</small></div>
+          <div class="cell plot">plot</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="rowhead">5</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell plot">plot</div>
+          <div class="cell plot">plot</div>
+          <div class="cell cairn">cairn<small>Midwife · T5</small></div>
+
+          <div class="rowhead">6</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell gate">gate</div>
+          <div class="cell gate">gate</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+
+        <div class="legend">
+          <div class="item"><span class="swatch plot"></span>Diggable grave plot (6 total)</div>
+          <div class="item"><span class="swatch cairn"></span>Where something rises, and when</div>
+          <div class="item"><span class="swatch tower"></span>Bell tower — rings, doesn't move</div>
+          <div class="item"><span class="swatch gate"></span>Town gate — losing too many here ends the night</div>
+          <div class="item"><span class="swatch sexton"></span>You (the Sexton) start here</div>
+          <div class="item"><span class="swatch dog"></span>The dog starts here</div>
+          <div class="item" style="margin-top:6px;"><span class="swatch" style="border:2px solid var(--lamp);background:transparent;"></span>Purpose-built: this grave sits right on the map's edge, directly in a target's path</div>
+        </div>
+      </div>
+
+      <table class="result-table">
+        <thead><tr><th>What rose</th><th>What happened to it</th></tr></thead>
+        <tbody>
+          <tr><td class="who">the Beadle</td><td>trapped and buried, turns 3–4 — the edge-grave trick, working exactly as designed</td></tr>
+          <tr class="through"><td class="who">the Clerk</td><td>let through the gate on purpose, turn 6 — the correct concession</td></tr>
+          <tr><td class="who">the Verger</td><td>turned back by the dog, twice — never recovered</td></tr>
+          <tr><td class="who">the Midwife</td><td>blocked by the dog holding a chokepoint — one step from the gate at dawn</td></tr>
+        </tbody>
+      </table>
+
+      <div class="verdict">
+        <b>Survived the night</b> — same result shape as board 01, and the thing this board was built to test
+        worked cleanly: putting a grave right on the edge of the map, directly on a target's path, makes the
+        capture trick reliable. That confirms the tools work. <b>But:</b> the wasted-turn count is still 4,
+        the worst of any version tested — this board simply doesn't throw enough at the player to keep two
+        pieces busy for all eight turns. See the log below for what that means for what's next.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="log">
+  <div class="wrap">
+    <h2 class="section-title">Dev log</h2>
+    <h3 class="section-sub">What happened, each session, in order</h3>
+
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 19 – 20</div>
+        <h4>Picked the concept, wrote the charter</h4>
+        <p>Mike reviewed three pitched game concepts and picked this one: a solo puzzle where you play a
+          graveyard keeper on the one night a year the dead climb out, working with a dog and a lantern,
+          with no combat and no randomness anywhere. Named it <em>Lamplight</em>. The project charter —
+          seven phases, dated milestones, and the point at which the whole idea gets a real go/no-go
+          decision — was written the same night.</p>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 20</div>
+        <h4>Wrote the full rules, hand-solved the first board</h4>
+        <p>Complete ruleset written down: turn order, exactly how the dead move and decide where to go,
+          how digging/burying/pushing works, win and loss conditions. Then hand-played the first test
+          board ("Michaelmas") move by move on paper, writing down the reasoning behind every single step —
+          and it held up. The night was survived.</p>
+        <div class="finding"><b>But:</b> the design's own bar for a good puzzle — no more than 2 turns out of
+          8 where the player has nothing real to decide — wasn't met. Michaelmas hit 3. Officially not
+          closed.<span class="sha">09309b7</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 21, morning</div>
+        <h4>Gave the gravedigger more speed — made it worse</h4>
+        <p>The obvious first fix: let the gravedigger cover more ground each turn. Re-ran the exact same
+          test board under the new rule to see if it helped.</p>
+        <div class="finding"><b>Result: worse, not better</b> — 4 wasted turns instead of 3. Traced exactly
+          why: his one useful position was pinned by <em>someone else's</em> schedule, not his own speed, so
+          moving faster didn't change when he could actually get there. Also found and closed a real gap in
+          the rules along the way (what happens when a player and a walking corpse race for the same
+          tile — it was never actually written down).<span class="sha">a3b5eb2</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 21, midday</div>
+        <h4>Tried a second grave on the weak side — dead end</h4>
+        <p>Different tactic, same board: use the gravedigger's early free turns to dig a second grave near
+          the side of the map that was giving the dog the most trouble, and use it to trap one of the two
+          things coming from that direction.</p>
+        <div class="finding">Worked out the geometry by hand before committing to it, and it doesn't work
+          on this board — the two graves near that side are positioned wrong relative to the path those
+          things actually walk. Ruled out cleanly, without having to hand-play the whole night to find
+          out.<span class="sha">c3968c3</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 21, afternoon</div>
+        <h4>Tried trapping instead of pushing — also dead, but the reason generalizes</h4>
+        <p>Tested a different capture idea: instead of directly shoving something into an open grave, cut
+          off every other direction it could walk so the grave is the only option left.</p>
+        <div class="finding">Doesn't work here either — and the reason turns out to apply to <em>every</em>
+          grave on this entire board, not just the ones tried: it takes three blockers to fully cut off a
+          target's escape routes, and there are only two mobile pieces to do it with. That's a real,
+          reusable finding about this board's layout, even though the specific idea didn't
+          pan out.<span class="sha">2d8f6b1</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 21, evening</div>
+        <h4>Built a second board to isolate the real problem</h4>
+        <p>Built a brand-new test board, "All Souls," specifically to answer one question: does the
+          push-into-a-grave trick actually work when the grave is positioned correctly — right on the edge
+          of the map, directly in a target's path — instead of one tile off, like every grave on the first
+          board happened to be?</p>
+        <div class="finding"><b>Yes.</b> Clean capture, worked exactly as intended. That confirms the core
+          toolkit is sound. But the wasted-turn count <em>still</em> didn't improve — it's 4 on this board
+          too, for a completely different reason: not enough things happen at once to keep both the
+          gravedigger and the dog busy for a full eight-turn night. That's a more useful failure than the
+          first one, because it points at <em>pacing</em>, not the rules themselves, as the
+          remaining problem.<span class="sha">f4563ba</span></div>
+      </div>
+
+    </div>
+
+    <div class="verdict" style="margin-top:34px;">
+      <b>Next up:</b> a board built with more overlapping threats — enough happening at once that both the
+      gravedigger and the dog stay genuinely busy the whole night — to see whether that's what finally
+      closes Phase 1.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Built and kept up to date by Amos. Every session that touches Lamplight updates this page.</p>
+    <p>This page describes work in a private repository — the design documents themselves aren't public,
+      but everything written here is a faithful, unspun account of what's in them.</p>
+  </div>
+</footer>
+
+</body>
+</html>
