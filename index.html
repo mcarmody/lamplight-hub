@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lamplight — Placeholder Studios</title>
-<meta name="description" content="Design log and status hub for Lamplight, a fully deterministic churchyard puzzle game from Placeholder Studios.">
+<title>Lamplight — project hub</title>
+<meta name="description" content="Design log and status hub for Lamplight, a fully deterministic churchyard puzzle game.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0e14'/%3E%3Ccircle cx='50' cy='46' r='22' fill='%23e8a94a'/%3E%3Cpath d='M38 70 L62 70 L57 88 L43 88 Z' fill='%23c9c2ac'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -410,7 +410,6 @@
   <div class="wrap">
     <div class="brand-group">
       <a class="brand" href="#top"><span class="dot"></span>Lamplight</a>
-      <span class="brand-studio">Placeholder Studios</span>
     </div>
     <div class="navlinks">
       <a href="#about">About</a>
@@ -493,7 +492,7 @@
         <div class="cap">wasted turns actually measured, across every version tried so far</div>
       </div>
       <div class="stat">
-        <div class="num">2</div>
+        <div class="num">3</div>
         <div class="cap">full test boards hand-played and audited turn by turn</div>
       </div>
     </div>
@@ -504,7 +503,7 @@
       gets written.</p>
 
     <div class="diagnosis">
-      <span class="k">Two different problems found, not one</span>
+      <span class="k">Three different problems found, not one</span>
       <p>The first test board's core trick worked exactly as designed: corner a target in a dug grave, then
         bury it, on schedule. What didn't work was keeping the Sexton busy on the turns around it — his cycle
         is dig, walk, walk, spring the trap, fill it back in, and the walking turns are dead time by
@@ -520,13 +519,18 @@
         came off clean. But the wasted-turn count didn't move. It's still four, and this time the cause is
         different: that board simply doesn't throw enough at the player, early enough, to keep both the Sexton
         and the dog occupied for a full night.</p>
+      <p>A third board tested that diagnosis directly by adding two more threats, one on each side of the map
+        that had been quiet before. The wasted-turn count landed at three again — but this time not because
+        nothing was possible. The night was lost because the whole session's attention went to one side of the
+        map, leaving the other side to walk through completely unwatched. The decisions were there the entire
+        night; they just weren't all taken.</p>
     </div>
 
     <p>The honest read: the individual tools — digging, pushing, the dog, the bell — all check out; each works
-      the way it's supposed to. What's still unproven is pacing: whether a board can be built that keeps both
-      pieces meaningfully busy for a full night. That's the next thing being tested, not a rules rewrite. No
-      code has been written yet; this is still entirely paper design, hand-solved with a pencil, the same way a
-      crossword constructor test-solves their own puzzle before it goes to print.</p>
+      the way it's supposed to, and with enough happening at once there's a real decision on almost every turn.
+      What's still unproven is whether a night like that can actually be survived. That's the next thing being
+      tested, not a rules rewrite. No code has been written yet; this is still entirely paper design, hand-solved
+      with a pencil, the same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
   </div>
 </section>
 
@@ -800,23 +804,43 @@
           remaining problem.<span class="sha">f4563ba</span></div>
       </div>
 
+      <div class="entry">
+        <div class="date">Aug 21, night</div>
+        <h4>Tested "more happening at once" directly — a different problem, and a more useful one</h4>
+        <p>Built a third board, same layout as the first two, with two more things rising out of the ground —
+          one on each side of the map that had been quiet before. The question from the last entry: if both
+          the Sexton and the dog have real work on both sides at once, does that finally close the gap?</p>
+        <div class="finding"><b>Result: the night was lost</b> — two things got through, unopposed, on the
+          side nobody was watching. But the reason is different and more useful than before: the player had
+          real decisions almost the entire night, including a genuine two-move combination between the dog
+          and the Sexton that showed up on its own rather than being planned — the dog knocked something off
+          its path into a spot right next to the Sexton, who then shoved it straight back. The loss came from
+          spending all of that attention on one side of the map while the other side walked through completely
+          unchallenged. That's a harder, more interesting problem than "nothing to do": it's "can't watch both
+          sides at once," and it's a fairer test of whether the design works. Also found and fixed a real gap
+          in how the dog's own rule was written down — it read as "she distracts whoever is closest to the
+          gate," which lets a fast, distant threat hog her attention for free, forever, even if she can never
+          reach it. Fixed to "she only distracts something she can actually reach."<span class="sha">954d8c1</span></div>
+      </div>
+
     </div>
 
     <div class="verdict" style="margin-top:34px;">
-      <b>Next up:</b> a board built with more overlapping threats — enough happening at once that both the
-      Sexton and the dog stay genuinely busy the whole night — to see whether that finally closes Phase 1.
+      <b>Next up:</b> replay the same board covering both sides on purpose instead of committing fully to one,
+      and check whether the "how many can get through" limit is still fair with more things on the board than
+      the first two tests had.
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p><strong>Lamplight</strong> is a Placeholder Studios project — Mike Carmody, CTO, and Amos, lead
-      developer, who keeps this page current after every design session.</p>
+    <p><strong>Lamplight</strong> is Mike Carmody's project. Amos keeps this page current after every
+      design session.</p>
     <p>This page describes work in a private repository. The design documents themselves aren't public, but
       everything written here is a faithful, unspun account of what's in them — updates included, setbacks
       included.</p>
-    <p class="footer-links"><a href="https://games.mikecarmody.net">Placeholder Studios</a> · <a href="https://github.com/mcarmody/lamplight-hub">Source for this page</a></p>
+    <p class="footer-links"><a href="https://games.mikecarmody.net">More projects</a> · <a href="https://github.com/mcarmody/lamplight-hub">Source for this page</a></p>
   </div>
 </footer>
 
