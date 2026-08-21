@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lamplight — project hub</title>
-<meta name="description" content="Design log and status hub for Lamplight, a fully deterministic graveyard puzzle game.">
+<title>Lamplight — Placeholder Studios</title>
+<meta name="description" content="Design log and status hub for Lamplight, a fully deterministic churchyard puzzle game from Placeholder Studios.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0e14'/%3E%3Ccircle cx='50' cy='46' r='22' fill='%23e8a94a'/%3E%3Cpath d='M38 70 L62 70 L57 88 L43 88 Z' fill='%23c9c2ac'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -50,9 +50,12 @@
   }
   nav .wrap{
     display:flex;align-items:center;justify-content:space-between;
-    padding-top:14px;padding-bottom:14px;
+    padding-top:12px;padding-bottom:12px;
     max-width:960px;
+    flex-wrap:wrap;
+    row-gap:6px;
   }
+  .brand-group{display:flex;flex-direction:column;gap:2px;}
   .brand{
     font-family:var(--serif);
     font-size:1.05rem;
@@ -67,10 +70,25 @@
     background:var(--lamp);
     box-shadow:0 0 10px 3px rgba(232,169,74,0.55);
   }
+  .brand-studio{
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--bone-faint);
+    padding-left:18px;
+  }
   .navlinks{display:flex;gap:22px;font-size:0.85rem;}
   .navlinks a{color:var(--bone-dim);text-decoration:none;letter-spacing:0.02em;}
   .navlinks a:hover{color:var(--lamp-bright);}
-  @media (max-width:560px){ .navlinks{gap:14px;font-size:0.78rem;} }
+  @media (max-width:560px){
+    .navlinks{gap:14px;font-size:0.78rem;}
+    .brand-studio{font-size:0.56rem;}
+  }
+  @media (max-width:420px){
+    h1.title{font-size:2.15rem;letter-spacing:0.04em;}
+    .tagline{font-size:1.02rem;}
+    .navlinks{gap:10px;font-size:0.72rem;}
+  }
 
   /* ---------- hero ---------- */
   header.hero{
@@ -238,6 +256,8 @@
     font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
     color:var(--rust-bright);margin-bottom:8px;display:block;
   }
+  .diagnosis p{margin:0 0 14px;}
+  .diagnosis p:last-child{margin-bottom:0;}
 
   /* ---------- board ---------- */
   .boardtabs{display:flex;gap:8px;margin-bottom:22px;}
@@ -376,8 +396,10 @@
     border-top:1px solid var(--line);
     text-align:center;
   }
-  footer p{font-size:0.82rem;color:var(--bone-faint);margin:4px 0;}
+  footer p{font-size:0.82rem;color:var(--bone-faint);margin:4px 0;max-width:560px;margin-left:auto;margin-right:auto;}
   footer a{color:var(--bone-dim);}
+  .footer-links{margin-top:16px;font-size:0.8rem;}
+  .footer-links a{margin:0 8px;}
 
   ::selection{background:rgba(232,169,74,0.35);}
 </style>
@@ -386,7 +408,10 @@
 
 <nav>
   <div class="wrap">
-    <a class="brand" href="#top"><span class="dot"></span>Lamplight</a>
+    <div class="brand-group">
+      <a class="brand" href="#top"><span class="dot"></span>Lamplight</a>
+      <span class="brand-studio">Placeholder Studios</span>
+    </div>
     <div class="navlinks">
       <a href="#about">About</a>
       <a href="#status">Status</a>
@@ -400,9 +425,9 @@
   <div class="wrap">
     <div class="lamp-mark"></div>
     <h1 class="title">Lamplight</h1>
-    <p class="tagline">You keep the churchyard on the hill. Four nights a year, the ground gives things back.</p>
-    <p class="subline">A project status hub for Mike — what Amos has built, tested, and found so far.
-      <strong>Updated as of the last design session.</strong> No spin: if something failed, it says so here.</p>
+    <p class="tagline">You keep the churchyard on the hill. Four nights a year the ground gives things back.</p>
+    <p class="subline">A running account of what's been designed, tested, and found so far — kept current after
+      every session. <strong>No spin:</strong> when something fails, this page says so.</p>
   </div>
 </header>
 
@@ -411,29 +436,28 @@
     <h2 class="section-title">What this is</h2>
     <h3 class="section-sub">A gravedigger, a dog, and no attack button</h3>
 
-    <p class="lede">Lamplight is a small puzzle game. You play the Sexton — the person who keeps a hillside
-      cemetery in order — on one of the four nights a year when what's buried gets up and starts walking.
-      You have a dog, a lantern, and a set of open graves. You have eight turns before dawn.</p>
+    <p class="lede">Lamplight is a small puzzle game. You play the Sexton — the churchyard keeper, on the
+      hillside above town — on one of the four nights a year when what's buried gets up and starts walking.
+      You have a dog, a lantern, and a handful of graves you can dig. You have eight turns before dawn.</p>
 
     <p><strong>There is no attack button.</strong> You can't hurt anything, and nothing can hurt you. The dead
-      simply walk, in a straight, predictable line, toward the gate at the bottom of the hill — and if enough
-      of them get there before sunrise, the town below loses. Your only tools are things a real gravedigger
-      would actually have: you can dig a grave, you can push something into an open one and fill it back in,
-      you can ring the bell to scatter a cluster of them, and your dog can stand somewhere and make anything
-      nearby reluctant to walk past her. That's the whole toolkit. Everything else is routing a problem
-      instead of removing it.</p>
+      simply walk — by a fixed, printed rule, never a guess — toward the gate at the bottom of the hill, and if
+      enough of them get through before sunrise, the town below loses. Your only tools are things a real
+      churchyard sexton would actually have: you can dig a grave, push something into an open one and fill it
+      back in, ring the bell to scatter whatever's nearby, and station your dog somewhere to make anything close
+      by reluctant to walk past her. That's the whole toolkit. Everything else is routing a problem instead of
+      removing it.</p>
 
     <div class="pull">Nothing in this game is left to chance — not once, not ever.</div>
 
-    <p>That's the actual hook, and it's a hard rule the design isn't allowed to break: every single thing that
-      happens on the board — where a corpse walks, how it reacts to the dog, what order things move in — is
-      worked out by a fixed, printed formula, not a die roll. The lantern in your hand only lights a small
-      area around you; anything further off is still following the exact same rules, just off-screen. A
-      patient player with a pencil can work out, in advance, exactly what every last thing on the board is
-      going to do all night, lit or not. If you get surprised, that means you did the math wrong — never that
-      the game secretly rolled something behind your back. That constraint is what makes it a real puzzle
-      instead of a slot machine with sound effects, and it's Mike's own condition from the day this concept
-      was picked: <em>fully predetermined, even in the dark.</em></p>
+    <p>That's the actual hook, and it's a hard rule the design isn't allowed to break: everything that happens
+      on the board — where a corpse walks, how it reacts to the dog, what order things move in — is worked out
+      by a fixed, printed formula, never a die roll. The lantern in your hand only lights the ground nearby;
+      anything further off is following the exact same rules, just off-screen. A patient player with a pencil
+      can work out, in advance, exactly what everything on the board will do all night, lit or not. If you get
+      surprised, you did the math wrong — the game never rolled anything behind your back. That constraint is
+      what makes this a real puzzle instead of a slot machine with sound effects, and it was Mike Carmody's
+      condition at green-light, verbatim: <em>fully predetermined, even when the player can't see it.</em></p>
   </div>
 </section>
 
@@ -455,10 +479,9 @@
 
     <div class="stamp">Phase 1 — still open</div>
 
-    <p class="lede">Before any code gets written, the design has to prove it works on paper — that a person
-      hand-playing a board actually has a real decision to make almost every turn, not just busywork between
-      the two or three moves that actually matter. That's the bar the design set for itself, and honestly:
-      <strong>it hasn't cleared it yet.</strong></p>
+    <p class="lede">Before any code gets written, the design has to prove itself on paper: a hand-played board
+      needs a real decision on almost every turn, not busywork between the two or three moves that actually
+      matter. That's the bar the design set for itself. <strong>It hasn't cleared it yet.</strong></p>
 
     <div class="statgrid">
       <div class="stat">
@@ -475,28 +498,35 @@
       </div>
     </div>
 
-    <p>"Wasted turn" means exactly what it sounds like: a turn where the gravedigger has nothing worthwhile to
-      do and is just walking somewhere, or waiting, because the game's own schedule leaves him with no live
-      choice. Both test boards played so far land at 3 or 4 such turns out of 8 — over the limit the design set
-      for itself before Mike ever saw a line of code.</p>
+    <p>A wasted turn means exactly what it sounds like: the Sexton has nothing worthwhile to do and is just
+      walking, or waiting, because the schedule leaves him no live choice. Every board tried so far lands at
+      three or four such turns out of eight — over the design's own limit, and before a single line of code
+      gets written.</p>
 
     <div class="diagnosis">
       <span class="k">Two different problems found, not one</span>
-      The first test board failed because the gravedigger's one big move — trapping something in an open
-      grave — was geometrically impossible to set up correctly, so he spent several turns just walking
-      nowhere useful. Giving him more speed made this <em>worse</em>, not better, because the real bottleneck
-      was never his speed — it was that his one useful position couldn't be reached in time no matter how fast
-      he moved. A second, purpose-built test board fixed that geometry and confirmed the grave-trap trick
-      works cleanly when it's set up right. But the wasted-turn count didn't drop — it's still stuck at 4,
-      for a completely different reason: that board simply doesn't throw enough things at the player at once
-      to keep both the gravedigger and the dog occupied across all eight turns.
+      <p>The first test board's core trick worked exactly as designed: corner a target in a dug grave, then
+        bury it, on schedule. What didn't work was keeping the Sexton busy on the turns around it — his cycle
+        is dig, walk, walk, spring the trap, fill it back in, and the walking turns are dead time by
+        construction. The obvious fix was to make him faster. It made things worse: four wasted turns instead
+        of three. The extra speed was meant to let him reach a second useful position late in the night, and he
+        still arrived one tile short, every time — because that tile only opened up once a different creature
+        vacated it on its own schedule. No amount of speed changes when someone else moves.</p>
+      <p>Two follow-up investigations then asked whether a second grave, placed differently, could pick up the
+        slack. Both came back negative, for the same underlying reason: every grave on this board sits one tile
+        in from the outer wall, and the creatures causing the trouble hug the wall itself — capturing them would
+        mean standing off the map. That's a property of this one board's layout, not of the rules, so a second,
+        purpose-built board moved a grave onto the true edge to test the fix directly. It worked — the capture
+        came off clean. But the wasted-turn count didn't move. It's still four, and this time the cause is
+        different: that board simply doesn't throw enough at the player, early enough, to keep both the Sexton
+        and the dog occupied for a full night.</p>
     </div>
 
-    <p>The honest read: the individual tools (digging, pushing, the dog, the bell) all check out and work
-      the way they're supposed to. What's still unproven is <em>pacing</em> — whether a board can be built that
-      keeps both pieces meaningfully busy for a full night. That's the next thing being tested, not a rules
-      rewrite. No code has been written yet; this is still entirely paper design, hand-solved with a pencil,
-      the same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
+    <p>The honest read: the individual tools — digging, pushing, the dog, the bell — all check out; each works
+      the way it's supposed to. What's still unproven is pacing: whether a board can be built that keeps both
+      pieces meaningfully busy for a full night. That's the next thing being tested, not a rules rewrite. No
+      code has been written yet; this is still entirely paper design, hand-solved with a pencil, the same way a
+      crossword constructor test-solves their own puzzle before it goes to print.</p>
   </div>
 </section>
 
@@ -504,10 +534,9 @@
   <div class="wrap">
     <h2 class="section-title">Screenshots of the playthrough</h2>
     <h3 class="section-sub">There's no game to screenshot yet — so here's the board, hand-solved</h3>
-    <p>Nothing is coded yet, so there's no build to take a picture of. What exists instead is more useful for
+    <p>Nothing is coded yet, so there's no build to screenshot. What exists instead is arguably more useful for
       judging the design: two 6×6 boards, fully specified, each hand-played move by move against the written
-      rules, with the reasoning behind every single step written down. Below is a diagram of both, and what
-      happened.</p>
+      rules, with the reasoning behind every step recorded. Below is a diagram of both, and what happened.</p>
 
     <input type="radio" name="boardtab" id="tab1" checked>
     <input type="radio" name="boardtab" id="tab2">
@@ -586,7 +615,7 @@
         <thead><tr><th>What rose</th><th>What happened to it</th></tr></thead>
         <tbody>
           <tr class="through"><td class="who">the Carter</td><td>let through the gate on purpose, turn 5 — the correct, deliberate concession</td></tr>
-          <tr><td class="who">Parson Wake</td><td>trapped and buried, turn 6</td></tr>
+          <tr><td class="who">Parson Wake</td><td>trapped turn 5, buried turn 6</td></tr>
           <tr><td class="who">the Drowned Girl</td><td>turned back by the dog, turn 4 — never reached the gate</td></tr>
           <tr><td class="who">the Ostler</td><td>blocked, then turned back by the dog — stopped short</td></tr>
           <tr><td class="who">Widow Ash</td><td>turned back by the dog — one step from the gate at dawn</td></tr>
@@ -594,11 +623,12 @@
       </table>
 
       <div class="verdict">
-        <b>Survived the night</b> — one thing let through on purpose, against a limit of two. Five of the
-        six graves were never used, which is exactly the ratio the design wants: most nights should be won
-        by herding and blocking, not by digging. <b>But:</b> the audit found 3 turns out of 8 where the
-        gravedigger had nothing worthwhile to do — one over the limit. Re-tested twice since with different
-        fixes; both retests made it worse (4 dead turns), for reasons written up in the log below.
+        <b>Survived the night</b> — one thing let through on purpose, against a limit of two, and five of the
+        six graves were never used. That's the ratio the design wants: most nights should be won by herding and
+        blocking, not by digging. <b>But:</b> the audit found three empty turns out of eight for the Sexton —
+        one over the design's own limit. A follow-up test gave him more speed and made it worse, not better
+        (four empty turns); two further investigations into a second grave ruled out that fix for a different,
+        board-specific reason. All three are written up in the log below.
       </div>
     </div>
 
@@ -680,11 +710,11 @@
       </table>
 
       <div class="verdict">
-        <b>Survived the night</b> — same result shape as board 01, and the thing this board was built to test
-        worked cleanly: putting a grave right on the edge of the map, directly on a target's path, makes the
-        capture trick reliable. That confirms the tools work. <b>But:</b> the wasted-turn count is still 4,
-        the worst of any version tested — this board simply doesn't throw enough at the player to keep two
-        pieces busy for all eight turns. See the log below for what that means for what's next.
+        <b>Survived the night</b> — same shape as board 01, and the thing this board exists to test worked
+        cleanly: putting a grave on the true edge of the map, directly on a target's path, makes the capture
+        reliable. That confirms the toolkit itself is sound. <b>But:</b> the wasted-turn count didn't move —
+        still four, tying the worst score of any version tried — because this board simply doesn't throw enough
+        at the player to keep both pieces busy for a full eight-turn night.
       </div>
     </div>
   </div>
@@ -701,19 +731,19 @@
         <div class="date">Aug 19 – 20</div>
         <h4>Picked the concept, wrote the charter</h4>
         <p>Mike reviewed three pitched game concepts and picked this one: a solo puzzle where you play a
-          graveyard keeper on the one night a year the dead climb out, working with a dog and a lantern,
-          with no combat and no randomness anywhere. Named it <em>Lamplight</em>. The project charter —
-          seven phases, dated milestones, and the point at which the whole idea gets a real go/no-go
+          churchyard keeper on one of the four nights a year the dead climb out, working with a dog and a
+          lantern, with no combat and no randomness anywhere. Named it <em>Lamplight</em>. The project
+          charter — seven phases, dated milestones, and the point where the whole idea gets a real go/no-go
           decision — was written the same night.</p>
       </div>
 
       <div class="entry">
         <div class="date">Aug 20</div>
         <h4>Wrote the full rules, hand-solved the first board</h4>
-        <p>Complete ruleset written down: turn order, exactly how the dead move and decide where to go,
-          how digging/burying/pushing works, win and loss conditions. Then hand-played the first test
-          board ("Michaelmas") move by move on paper, writing down the reasoning behind every single step —
-          and it held up. The night was survived.</p>
+        <p>Complete ruleset written down: turn order, how the dead move and decide where to go, how digging,
+          burying and pushing work, win and loss conditions. Then hand-played the first test board
+          ("Michaelmas") move by move on paper, writing down the reasoning behind every step — and it held.
+          The night was survived.</p>
         <div class="finding"><b>But:</b> the design's own bar for a good puzzle — no more than 2 turns out of
           8 where the player has nothing real to decide — wasn't met. Michaelmas hit 3. Officially not
           closed.<span class="sha">09309b7</span></div>
@@ -721,9 +751,9 @@
 
       <div class="entry">
         <div class="date">Aug 21, morning</div>
-        <h4>Gave the gravedigger more speed — made it worse</h4>
-        <p>The obvious first fix: let the gravedigger cover more ground each turn. Re-ran the exact same
-          test board under the new rule to see if it helped.</p>
+        <h4>Gave the Sexton more speed — made it worse</h4>
+        <p>The obvious first fix: let the Sexton cover more ground each turn. Re-ran the exact same test board
+          under the new rule to see if it helped.</p>
         <div class="finding"><b>Result: worse, not better</b> — 4 wasted turns instead of 3. Traced exactly
           why: his one useful position was pinned by <em>someone else's</em> schedule, not his own speed, so
           moving faster didn't change when he could actually get there. Also found and closed a real gap in
@@ -732,11 +762,11 @@
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, midday</div>
+        <div class="date">Aug 21, late morning</div>
         <h4>Tried a second grave on the weak side — dead end</h4>
-        <p>Different tactic, same board: use the gravedigger's early free turns to dig a second grave near
-          the side of the map that was giving the dog the most trouble, and use it to trap one of the two
-          things coming from that direction.</p>
+        <p>Different tactic, same board: use the Sexton's early free turns to dig a second grave near the side
+          of the map giving the dog the most trouble, and use it to trap one of the two things coming from
+          that direction.</p>
         <div class="finding">Worked out the geometry by hand before committing to it, and it doesn't work
           on this board — the two graves near that side are positioned wrong relative to the path those
           things actually walk. Ruled out cleanly, without having to hand-play the whole night to find
@@ -744,7 +774,7 @@
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, afternoon</div>
+        <div class="date">Aug 21, midday</div>
         <h4>Tried trapping instead of pushing — also dead, but the reason generalizes</h4>
         <p>Tested a different capture idea: instead of directly shoving something into an open grave, cut
           off every other direction it could walk so the grave is the only option left.</p>
@@ -756,7 +786,7 @@
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, evening</div>
+        <div class="date">Aug 21, afternoon</div>
         <h4>Built a second board to isolate the real problem</h4>
         <p>Built a brand-new test board, "All Souls," specifically to answer one question: does the
           push-into-a-grave trick actually work when the grave is positioned correctly — right on the edge
@@ -765,7 +795,7 @@
         <div class="finding"><b>Yes.</b> Clean capture, worked exactly as intended. That confirms the core
           toolkit is sound. But the wasted-turn count <em>still</em> didn't improve — it's 4 on this board
           too, for a completely different reason: not enough things happen at once to keep both the
-          gravedigger and the dog busy for a full eight-turn night. That's a more useful failure than the
+          Sexton and the dog busy for a full eight-turn night. That's a more useful failure than the
           first one, because it points at <em>pacing</em>, not the rules themselves, as the
           remaining problem.<span class="sha">f4563ba</span></div>
       </div>
@@ -774,17 +804,19 @@
 
     <div class="verdict" style="margin-top:34px;">
       <b>Next up:</b> a board built with more overlapping threats — enough happening at once that both the
-      gravedigger and the dog stay genuinely busy the whole night — to see whether that's what finally
-      closes Phase 1.
+      Sexton and the dog stay genuinely busy the whole night — to see whether that finally closes Phase 1.
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>Built and kept up to date by Amos. Every session that touches Lamplight updates this page.</p>
-    <p>This page describes work in a private repository — the design documents themselves aren't public,
-      but everything written here is a faithful, unspun account of what's in them.</p>
+    <p><strong>Lamplight</strong> is a Placeholder Studios project — Mike Carmody, CTO, and Amos, lead
+      developer, who keeps this page current after every design session.</p>
+    <p>This page describes work in a private repository. The design documents themselves aren't public, but
+      everything written here is a faithful, unspun account of what's in them — updates included, setbacks
+      included.</p>
+    <p class="footer-links"><a href="https://games.mikecarmody.net">Placeholder Studios</a> · <a href="https://github.com/mcarmody/lamplight-hub">Source for this page</a></p>
   </div>
 </footer>
 
