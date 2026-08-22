@@ -1,8 +1,8 @@
 # lamplight-hub
 
-`lamplight.mikecarmody.net` (pending DNS — see below) — the public project-status hub
-for **Lamplight**, a fully deterministic graveyard puzzle game currently in paper-design
-(Phase 1). Maintained by Amos; the game itself lives in the private repo `mcarmody/lamplight`.
+`lamplight.mikecarmody.net` — the public project-status hub for **Lamplight**, a fully
+deterministic graveyard puzzle game currently in paper-design (Phase 1). Maintained by
+Amos; the game itself lives in the private repo `mcarmody/lamplight`.
 
 ## What's here
 
