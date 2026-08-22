@@ -502,7 +502,7 @@
       gets written.</p>
 
     <div class="diagnosis">
-      <span class="k">Three different problems found, not one</span>
+      <span class="k">Four sessions, four different findings</span>
       <p>The first test board's core trick worked exactly as designed: corner a target in a dug grave, then
         bury it, on schedule. What didn't work was keeping the Sexton busy on the turns around it — his cycle
         is dig, walk, walk, spring the trap, fill it back in, and the walking turns are dead time by
@@ -523,13 +523,29 @@
         nothing was possible. The night was lost because the whole session's attention went to one side of the
         map, leaving the other side to walk through completely unwatched. The decisions were there the entire
         night; they just weren't all taken.</p>
+      <p>The follow-up replayed that exact third board, splitting attention between both sides on purpose this
+        time instead of letting one go unwatched. The night survived — the first time this design has held
+        against seven threats at all, at the tighter pass-two limit and with nothing left over: two of the six
+        stopped threats were still just one step from the gate at dawn. But the wasted-turn count went up, not down
+        — four, one worse than the version that lost. That isn't a contradiction: the losing run's turns were
+        all live because everything was still in doubt, and a plan that actually wins buys itself some slack,
+        which is exactly what a wasted turn looks like in this kind of audit. Two of the four look like genuine
+        unclaimed slack worth trying to close next; the other two are turns where an earlier decision is simply
+        paying off, and those look hard to remove on a board shaped like this one at all.</p>
+      <p>A second question rode along with that replay: with seven threats instead of five, is the same
+        pass-two-and-lose limit still fair, or should it loosen to three? Both got checked directly. The careful,
+        both-flanks plan holds at the tighter number. So, it turns out, does the original losing plan — replayed
+        out to the final turn instead of stopping the count where it lost historically, it never reaches the
+        looser number either. That argues for keeping the tighter limit: one that saves the plan that ignored
+        half the map just as readily as the one that didn't isn't measuring anything.</p>
     </div>
 
     <p>The individual tools — digging, pushing, the dog, the bell — all check out; each works the way it's
-      supposed to, and with enough happening at once there's a real decision on almost every turn. What's still
-      unproven is whether a night like that can actually be survived. That's the next thing being tested, not a
-      rules rewrite. No code has been written yet; this is still paper design, hand-solved with a pencil, the
-      same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
+      supposed to, and with enough happening at once there's a real decision on most of the night. A night like
+      that can now be shown to be survivable, deliberately, at the tighter pass-two limit. What's still open is
+      getting the wasted-turn count itself down to the design's own limit of two — the next thing being tested,
+      not a rules rewrite. No code has been written yet; this is still paper design, hand-solved with a pencil,
+      the same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
   </div>
 </section>
 
@@ -822,12 +838,35 @@
           reach it. Fixed to "she only distracts something she can actually reach."<span class="sha">954d8c1</span></div>
       </div>
 
+      <div class="entry">
+        <div class="date">Aug 21, night</div>
+        <h4>Replayed the third board covering both sides on purpose — survived, but not more efficiently</h4>
+        <p>Same board as the last entry, same seven things rising, nothing moved. Only the plan changed: this
+          time, split attention between both sides from the start instead of letting the dog commit fully west
+          and never come back. The east-side threat that got through unopposed last time was the one specific
+          thing this session set out to fix.</p>
+        <div class="finding"><b>Survived</b> — the first time this design has held a full night against seven
+          things at once, at the tighter two-through limit, with nothing spare: two of the six stopped things
+          were still just one step from the gate when dawn broke. But the wasted-turn count
+          went up, not down — four wasted turns, one more than the version that lost. That isn't a contradiction:
+          the losing run's turns were all live because the night was still in doubt the whole time, and a plan
+          that actually wins buys itself slack, which shows up in this kind of count as a wasted turn. Also
+          settled, in the same session: whether the two-through limit is still fair with seven things on the
+          board instead of five. It is — replaying the losing plan out to the actual end (instead of stopping
+          the count where it lost) shows even the plan that ignored an entire side of the map would have
+          survived under a looser three-through limit, which means that looser number doesn't actually tell a
+          careful night from a careless one. The tighter limit stays.<span class="sha">ff0234e</span></div>
+      </div>
+
     </div>
 
     <div class="verdict" style="margin-top:34px;">
-      <b>Next up:</b> replay the same board covering both sides on purpose instead of committing fully to one,
-      and check whether the "how many can get through" limit is still fair with more things on the board than
-      the first two tests had.
+      <b>Next up:</b> two threads left open by this session. First, roughly a quarter of the night (two of the
+      four wasted turns) looks like real unclaimed slack rather than something the design forces — worth a
+      genuine second capture attempt in that window before assuming four wasted turns is the floor for this
+      kind of plan. Second, the other two wasted turns are the ones where an earlier decision is simply paying
+      off, and those look structurally hard to remove on a board shaped like this one at all, which may mean the
+      two-wasted-turn bar itself needs a second look, separately from the ruleset.
     </div>
   </div>
 </section>
