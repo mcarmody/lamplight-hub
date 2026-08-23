@@ -79,6 +79,19 @@
   }
   .navlinks{display:flex;gap:22px;font-size:0.85rem;}
   .navlinks a{color:var(--bone-dim);text-decoration:none;letter-spacing:0.02em;}
+  .navlinks a.play{
+    color:#12100c;background:var(--lamp);border-radius:4px;
+    padding:3px 11px;font-weight:600;
+  }
+  .navlinks a.play:hover{background:var(--lamp-bright);color:#12100c;}
+  .playcta{
+    display:inline-block;margin-top:22px;
+    background:var(--lamp);color:#12100c;text-decoration:none;
+    font-weight:600;font-size:1rem;letter-spacing:0.01em;
+    padding:13px 26px;border-radius:5px;
+  }
+  .playcta:hover{background:var(--lamp-bright);color:#12100c;}
+  .playnote{margin-top:11px;font-size:0.82rem;color:var(--bone-faint);}
   .navlinks a:hover{color:var(--lamp-bright);}
   @media (max-width:560px){
     .navlinks{gap:14px;font-size:0.78rem;}
@@ -416,6 +429,7 @@
       <a href="#status">Status</a>
       <a href="#board">The board</a>
       <a href="#log">Dev log</a>
+      <a class="play" href="https://play.lamplight.mikecarmody.net">Play it</a>
     </div>
   </div>
 </nav>
@@ -426,6 +440,9 @@
     <h1 class="title">Lamplight</h1>
     <p class="tagline">You keep the churchyard on the hill. Four nights a year the ground gives things back.</p>
     <p class="subline">Design notes for a small, deterministic puzzle game.</p>
+    <a class="playcta" href="https://play.lamplight.mikecarmody.net">Play the first night &rarr;</a>
+    <p class="playnote">Phone-first, portrait, about four minutes. Placeholder squares, no art yet &mdash;
+      this is the working core, not a demo build.</p>
   </div>
 </header>
 
@@ -462,12 +479,12 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 1 of 7 — proving the rules work on paper</h3>
+    <h3 class="section-sub">Phase 2 of 7 — the playable core, and the go/no-go decision</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
-      <div class="phase current"><span class="n">1</span><span class="label">Rules on paper</span></div>
-      <div class="phase"><span class="n">2</span><span class="label">Playable core, no art</span></div>
+      <div class="phase done"><span class="n">1</span><span class="label">Rules on paper</span></div>
+      <div class="phase current"><span class="n">2</span><span class="label">Playable core, no art</span></div>
       <div class="phase"><span class="n">3</span><span class="label">Boards that matter</span></div>
       <div class="phase"><span class="n">4</span><span class="label">Look &amp; sound</span></div>
       <div class="phase"><span class="n">5</span><span class="label">Full run</span></div>
@@ -475,31 +492,46 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 1 — still open</div>
+    <div class="stamp">Phase 2 — playable now, decision due Sep 3</div>
 
-    <p class="lede">Before any code gets written, the design has to prove itself on paper: a hand-played board
-      needs a real decision on almost every turn, not busywork between the two or three moves that actually
-      matter. That's the bar the design set for itself. <strong>It hasn't cleared it yet.</strong></p>
+    <p class="lede">Phase 1 closed on August 21 and <strong>there is a real game to play now</strong>. The whole
+      night runs in a browser on a phone: eight turns, every verb live, a printed schedule of everything that
+      will happen, and an ending that says plainly whether the town survived. It is placeholder squares and
+      labels — the art phase is two phases away — but nothing about the rules is faked or stubbed.
+      <a href="https://play.lamplight.mikecarmody.net">Play it here.</a></p>
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">2</div>
-        <div class="cap">wasted turns allowed, out of 8, before the design is considered a fail</div>
+        <div class="num ok">87</div>
+        <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
-        <div class="num bad">3–4</div>
-        <div class="cap">wasted turns actually measured, across every version tried so far</div>
+        <div class="num ok">6</div>
+        <div class="cap">verbs live in the build: move, dig, fill, shove, ring, and the dog</div>
       </div>
       <div class="stat">
-        <div class="num">3</div>
-        <div class="cap">full test boards hand-played and audited turn by turn</div>
+        <div class="num">Sep 3</div>
+        <div class="cap">the go/no-go date — Mike plays it on a phone and calls it tension or tedium</div>
       </div>
     </div>
 
+    <p>Phase 2 is the project's <strong>kill gate</strong>: at the end of it the central bet gets tested for
+      real. A board with no attack button either produces tension or it produces a chore, and the only honest
+      way to find that out is for Mike to sit down with it on a phone and lose. If the answer is "chore," the
+      plan says pivot, switch to a different concept, or stop — and two weeks will have bought a real answer
+      instead of a hunch. No phase after this one begins until that gate is explicitly passed.</p>
+
+    <p>What Phase 1 could <em>not</em> settle, and what this build exists to settle, is whether there is enough
+      to decide on each turn. Six sessions of solving boards by hand kept landing on three or four turns out of
+      eight where the player had nothing worthwhile to do, against a self-imposed limit of two. The record of
+      that is below, and the findings hold up — but hand-solving turned out to be the wrong instrument for the
+      question, and the action economy was redesigned with Mike on August 21 rather than tuned further. The
+      simulation now counts those dead turns itself, at runtime, every night anyone plays.</p>
+
     <p>A wasted turn means exactly what it sounds like: the Sexton has nothing worthwhile to do and is just
-      walking, or waiting, because the schedule leaves him no live choice. Every board tried so far lands at
-      three or four such turns out of eight — over the design's own limit, and before a single line of code
-      gets written.</p>
+      walking, or waiting, because the schedule leaves him no live choice. Every board hand-solved during
+      Phase 1 landed at three or four such turns out of eight. That record is below, in the sessions that
+      produced it.</p>
 
     <div class="diagnosis">
       <span class="k">Six sessions, six different findings</span>
@@ -553,22 +585,24 @@
         exactly what the next test board needs to do differently.</p>
     </div>
 
-    <p>The individual tools — digging, pushing, the dog, the bell — all check out; each works the way it's
-      supposed to, and with enough happening at once there's a real decision on most of the night. A night like
-      that can now be shown to be survivable, deliberately, at the tighter pass-two limit. What's still open is
-      getting the wasted-turn count itself down to the design's own limit of two — the next thing being tested,
-      not a rules rewrite. No code has been written yet; this is still paper design, hand-solved with a pencil,
-      the same way a crossword constructor test-solves their own puzzle before it goes to print.</p>
+    <p>Those findings were not thrown away. Two of them are load-bearing and carry straight into the board
+      authoring phase: two things through the gate is the right losing number, and dead turns late in a night
+      are a property of how that particular night is scheduled rather than of the rules. What changed is who
+      answers the question. It is no longer one person with a pencil solving one board at a time — it is the
+      build, counting as it goes, and Mike, playing it.</p>
   </div>
 </section>
 
 <section id="board">
   <div class="wrap">
-    <h2 class="section-title">Screenshots of the playthrough</h2>
-    <h3 class="section-sub">There's no game to screenshot yet — so here's the board, hand-solved</h3>
-    <p>Nothing is coded yet, so there's no build to screenshot. What there is instead: two 6×6 boards, fully
-      specified and hand-played move by move against the written rules, with the reasoning behind every step
-      recorded. Below is a diagram of both, and what happened on each.</p>
+    <h2 class="section-title">The board</h2>
+    <h3 class="section-sub">Two boards, hand-solved on paper — the design record behind the build</h3>
+    <p>The build generates its boards now, and the fastest way to see one is to
+      <a href="https://play.lamplight.mikecarmody.net">open it</a>. What follows is the earlier record: two 6×6
+      boards, fully specified and hand-played move by move against the written rules, with the reasoning behind
+      every step written down. They are why the rules look the way they do, and they are the fixtures the
+      simulation is checked against — the distance-to-gate field in the code is asserted, number by number,
+      against the thirty-five printed on the first of these sheets.</p>
 
     <input type="radio" name="boardtab" id="tab1" checked>
     <input type="radio" name="boardtab" id="tab2">
@@ -890,19 +924,67 @@
           the toolkit.<span class="sha">d915b0a</span></div>
       </div>
 
+      <div class="entry">
+        <div class="date">Aug 21, late</div>
+        <h4>Stopped hand-solving. Redesigned the action economy with Mike instead</h4>
+        <p>Six sessions and roughly six hours had gone into solving boards by hand against a wasted-turn bar
+          that Phase 1 never actually set as a pass/fail gate — it asked for a written answer to the question,
+          and that answer had landed the day before. Mike's read was blunt and correct: this was not a viable
+          way to design a game, and the instinct to keep trying until something proves out is the thing to
+          stop doing. So the loop itself got redesigned, in conversation, in one sitting.</p>
+        <div class="finding"><b>What changed:</b> falling into an open grave is now automatic, which collapses
+          the old five-turn removal cycle and turns digging into a <em>prediction</em> — you open the ground
+          where you worked out something will be. Burial becomes optional, and a debt: everything climbs back
+          out at dawn on its own, and burying costs a turn but keeps that one down for the rest of the year.
+          The spade, the lantern and the bell became objects you can set down rather than abilities you always
+          carry. And a year became twelve nights across four three-night sets, not four single
+          nights.<span class="sha">17f1789</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 22</div>
+        <h4>Built the simulation — and it is deliberately boring code</h4>
+        <p>Phase 1 closed. The first thing written was not the game: it was the automated build-and-test
+          pipeline, because the machine this project is developed on is a Raspberry Pi that runs the household
+          and is hard-blocked from compiling anything this size. Every check runs on GitHub's machines instead.
+          That was a written prerequisite from day one rather than something discovered in week four.</p>
+        <p>Then the rules themselves, as plain functions with no graphics attached: board geometry, the
+          distance-to-gate field, ground state and consecration, movement, the exact order in which the dead
+          choose their next step, the dog's three rules, the turn pipeline, and seeded board generation that
+          replays identically every time from the same number.</p>
+        <div class="finding"><b>87 tests, green.</b> The standing rule is that a rule with no test is not a real
+          rule. The simulation also counts its own wasted turns as it runs — the measurement six sessions of
+          pencil work were trying to take by hand is now free, on every night anyone plays, and it feeds a
+          later phase directly.<span class="sha">0ed7beb</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 22 – 23</div>
+        <h4>Put it on a phone — the kill-gate artifact exists</h4>
+        <p>A browser layer over the simulation, and then the part that actually matters: a public link. Tap a
+          verb, tap a tile; the night runs through its phases; the schedule of everything that will rise is
+          printed on the page, because nothing in this game is hidden. It is coloured squares with labels on
+          them and it is meant to be — art is Phase 4.</p>
+        <div class="finding"><b>Live at
+          <a href="https://play.lamplight.mikecarmody.net">play.lamplight.mikecarmody.net</a>.</b> Played end
+          to end on a 390-pixel phone viewport to check the claim rather than assume it: the dead walked, the
+          tally climbed, two reached the gate, and the night ended on an unambiguous screen saying so. That
+          link is Phase 2's whole deliverable — the go/no-go on this entire project is Mike opening it and
+          losing on it.<span class="sha">4318db4</span></div>
+      </div>
+
     </div>
 
     <div class="verdict" style="margin-top:34px;">
-      <b>Next up:</b> the slack turned out not to be free to spend on this board, and the two payoff turns turned
-      out to be about this board's schedule, not the toolkit. Two threads for whoever picks this up next, not
-      mutually exclusive: replay from scratch changing exactly when the dog gets into position, so the capture
-      the main plan wants never loses the race to a threat that happens to land on the same tile first; and
-      separately, build a fourth test board that seeds one genuinely dangerous threat right at the very end on
-      purpose, instead of hoping the timing lines up on its own. Six sessions in have now landed on capture
-      mechanics that work, a night that can be won outright, and a wasted-turn count that still won't come down
-      — specific enough that it may be worth asking whether two wasted turns out of eight is the right bar for a
-      game that's fully worked out on paper before a single move gets made, rather than just trying another
-      board.
+      <b>Next up:</b> Mike plays it. That is not a formality — Phase 2 is the project's kill gate and the whole
+      question is whether a board you cannot attack produces tension or a chore. The build is deliberately ugly
+      so the answer is about the game rather than the paint. Between now and September 3 the work is tuning
+      against what the simulation reports rather than against argument: how far the Sexton and the dog should
+      move, how much the bell should cost, and how many live decisions a generated night actually contains.
+      One design question is still open and is flagged rather than quietly settled — the written rules have the
+      dead route <em>around</em> open graves, and the new economy has them fall <em>in</em>; both cannot hold,
+      the build ships the second and keeps the first available, and the two get compared by playing rather than
+      by arguing.
     </div>
   </div>
 </section>
