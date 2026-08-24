@@ -479,26 +479,26 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 2 of 7 — the playable core, and the go/no-go decision</h3>
+    <h3 class="section-sub">Phase 3 of 7 — the kill gate passed, now boards that matter</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
       <div class="phase done"><span class="n">1</span><span class="label">Rules on paper</span></div>
-      <div class="phase current"><span class="n">2</span><span class="label">Playable core, no art</span></div>
-      <div class="phase"><span class="n">3</span><span class="label">Boards that matter</span></div>
+      <div class="phase done"><span class="n">2</span><span class="label">Playable core, no art</span></div>
+      <div class="phase current"><span class="n">3</span><span class="label">Boards that matter</span></div>
       <div class="phase"><span class="n">4</span><span class="label">Look &amp; sound</span></div>
       <div class="phase"><span class="n">5</span><span class="label">Full run</span></div>
       <div class="phase"><span class="n">6</span><span class="label">v1 ships</span></div>
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 2 — playable now, decision due Sep 3</div>
+    <div class="stamp">Phase 3 — kill gate passed Aug 24, 12 days ahead of schedule</div>
 
-    <p class="lede">Phase 1 closed on August 21 and <strong>there is a real game to play now</strong>. The whole
-      night runs in a browser on a phone: eight turns, every verb live, a printed schedule of everything that
-      will happen, and an ending that says plainly whether the town survived. It is placeholder squares and
-      labels — the art phase is two phases away — but nothing about the rules is faked or stubbed.
-      <a href="https://play.lamplight.mikecarmody.net">Play it here.</a></p>
+    <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
+      called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
+      verb live, a printed schedule of everything that will happen, and an ending that says plainly whether the
+      town survived. It is still placeholder squares and labels — the art phase is two phases away — but nothing
+      about the rules is faked or stubbed. <a href="https://play.lamplight.mikecarmody.net">Play it here.</a></p>
 
     <div class="statgrid">
       <div class="stat">
@@ -510,16 +510,17 @@
         <div class="cap">verbs live in the build: move, dig, fill, shove, ring, and the dog</div>
       </div>
       <div class="stat">
-        <div class="num">Sep 3</div>
-        <div class="cap">the go/no-go date — Mike plays it on a phone and calls it tension or tedium</div>
+        <div class="num ok">Passed</div>
+        <div class="cap">the go/no-go verdict, Aug 24 — twelve days ahead of the Sep 3 date</div>
       </div>
     </div>
 
-    <p>Phase 2 is the project's <strong>kill gate</strong>: at the end of it the central bet gets tested for
+    <p>Phase 2 was the project's <strong>kill gate</strong>: at the end of it the central bet got tested for
       real. A board with no attack button either produces tension or it produces a chore, and the only honest
-      way to find that out is for Mike to sit down with it on a phone and lose. If the answer is "chore," the
-      plan says pivot, switch to a different concept, or stop — and two weeks will have bought a real answer
-      instead of a hunch. No phase after this one begins until that gate is explicitly passed.</p>
+      way to find that out was for Mike to sit down with it on a phone and lose. If the answer had been "chore,"
+      the plan called for a pivot, a different concept, or a stop — instead two weeks bought a real answer
+      instead of a hunch, and the answer was tension. No phase after this one could begin until that gate was
+      explicitly passed; it now has been.</p>
 
     <p>What Phase 1 could <em>not</em> settle, and what this build exists to settle, is whether there is enough
       to decide on each turn. Six sessions of solving boards by hand kept landing on three or four turns out of
@@ -973,18 +974,32 @@
           losing on it.<span class="sha">4318db4</span></div>
       </div>
 
+      <div class="entry">
+        <div class="date">Aug 24</div>
+        <h4>Mike played it. The kill gate passed.</h4>
+        <p>The whole reason Phase 2 exists: sit down with the build on a phone and find out for real whether a
+          board you cannot attack is tension or a chore. Not simulated, not argued — played, twelve days ahead
+          of the September 3 date the charter set aside for it.</p>
+        <div class="finding"><b>Verdict: "the prototype seems good."</b> Balance and timing still need work, but
+          that was expected this early, not a mark against the core bet — his own words were "of course... but
+          it's early." Phase 2 is closed. One piece of feedback carries straight into Phase 3 and is called out
+          below rather than buried in a checklist: enemies and the environment should telegraph their next move
+          before the player commits, Into the Breach style. It costs nothing new in the simulation — every board
+          is already fully precomputable one step ahead, since nothing in this game hides information by design
+          — it is exposing that in the interface, not changing the rules. It needs to land before boards get
+          hand-authored, on the assumption that players can read a threat the way the Phase 1 hand-solver
+          could.</div>
+      </div>
+
     </div>
 
     <div class="verdict" style="margin-top:34px;">
-      <b>Next up:</b> Mike plays it. That is not a formality — Phase 2 is the project's kill gate and the whole
-      question is whether a board you cannot attack produces tension or a chore. The build is deliberately ugly
-      so the answer is about the game rather than the paint. Between now and September 3 the work is tuning
-      against what the simulation reports rather than against argument: how far the Sexton and the dog should
-      move, how much the bell should cost, and how many live decisions a generated night actually contains.
-      One design question is still open and is flagged rather than quietly settled — the written rules have the
-      dead route <em>around</em> open graves, and the new economy has them fall <em>in</em>; both cannot hold,
-      the build ships the second and keeps the first available, and the two get compared by playing rather than
-      by arguing.
+      <b>Next up:</b> Phase 3 — twenty hand-authored boards, each solvable more than one way and verified by a
+      solver, no single piece dominant. The dog's leash numbers get set from play, not theory; board 01 already
+      shows her doing too much of the work. The telegraph requirement above lands first, before boards get
+      authored against it. One design question from Phase 2 is still open and flagged rather than quietly
+      settled — the written rules have the dead route <em>around</em> open graves, and the shipped build has
+      them fall <em>in</em>; both cannot hold, and which one survives gets decided by playing, not arguing.
     </div>
   </div>
 </section>
