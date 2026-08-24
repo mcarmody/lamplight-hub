@@ -795,95 +795,88 @@
     <div class="timeline">
 
       <div class="entry">
-        <div class="date">Aug 19 – 20</div>
-        <h4>Picked the concept, wrote the charter</h4>
-        <p>Mike reviewed three pitched game concepts and picked this one: a solo puzzle where you play a
-          churchyard keeper on one of the four nights a year the dead climb out, working with a dog and a
-          lantern, with no combat and no randomness anywhere. Named it <em>Lamplight</em>. The project
-          charter — seven phases, dated milestones, and the point where the whole idea gets a real go/no-go
-          decision — was written the same night.</p>
+        <div class="date">Aug 24</div>
+        <h4>Mike played it. The kill gate passed.</h4>
+        <p>The whole reason Phase 2 exists: sit down with the build on a phone and find out for real whether a
+          board you cannot attack is tension or a chore. Not simulated, not argued — played, twelve days ahead
+          of the September 3 date the charter set aside for it.</p>
+        <div class="finding"><b>Verdict: "the prototype seems good."</b> Balance and timing still need work, but
+          that was expected this early, not a mark against the core bet — his own words were "of course... but
+          it's early." Phase 2 is closed. One piece of feedback carries straight into Phase 3 and is called out
+          below rather than buried in a checklist: enemies and the environment should telegraph their next move
+          before the player commits, Into the Breach style. It costs nothing new in the simulation — every board
+          is already fully precomputable one step ahead, since nothing in this game hides information by design
+          — it is exposing that in the interface, not changing the rules. It needs to land before boards get
+          hand-authored, on the assumption that players can read a threat the way the Phase 1 hand-solver
+          could.</div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 20</div>
-        <h4>Wrote the full rules, hand-solved the first board</h4>
-        <p>Complete ruleset written down: turn order, how the dead move and decide where to go, how digging,
-          burying and pushing work, win and loss conditions. Then hand-played the first test board
-          ("Michaelmas") move by move on paper, writing down the reasoning behind every step — and it held.
-          The night was survived.</p>
-        <div class="finding"><b>But:</b> the design's own bar for a good puzzle — no more than 2 turns out of
-          8 where the player has nothing real to decide — wasn't met. Michaelmas hit 3. Officially not
-          closed.<span class="sha">09309b7</span></div>
+        <div class="date">Aug 22 – 23</div>
+        <h4>Put it on a phone — the kill-gate artifact exists</h4>
+        <p>A browser layer over the simulation, and then the part that actually matters: a public link. Tap a
+          verb, tap a tile; the night runs through its phases; the schedule of everything that will rise is
+          printed on the page, because nothing in this game is hidden. It is coloured squares with labels on
+          them and it is meant to be — art is Phase 4.</p>
+        <div class="finding"><b>Live at
+          <a href="https://play.lamplight.mikecarmody.net">play.lamplight.mikecarmody.net</a>.</b> Played end
+          to end on a 390-pixel phone viewport to check the claim rather than assume it: the dead walked, the
+          tally climbed, two reached the gate, and the night ended on an unambiguous screen saying so. That
+          link is Phase 2's whole deliverable — the go/no-go on this entire project is Mike opening it and
+          losing on it.<span class="sha">4318db4</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, morning</div>
-        <h4>Gave the Sexton more speed — made it worse</h4>
-        <p>The obvious first fix: let the Sexton cover more ground each turn. Re-ran the exact same test board
-          under the new rule to see if it helped.</p>
-        <div class="finding"><b>Result: worse, not better</b> — 4 wasted turns instead of 3. Traced exactly
-          why: his one useful position was pinned by <em>someone else's</em> schedule, not his own speed, so
-          moving faster didn't change when he could actually get there. Also found and closed a real gap in
-          the rules along the way (what happens when a player and a walking corpse race for the same
-          tile — it was never actually written down).<span class="sha">a3b5eb2</span></div>
+        <div class="date">Aug 22</div>
+        <h4>Built the simulation — and it is deliberately boring code</h4>
+        <p>Phase 1 closed. The first thing written was not the game: it was the automated build-and-test
+          pipeline, because the machine this project is developed on is a Raspberry Pi that runs the household
+          and is hard-blocked from compiling anything this size. Every check runs on GitHub's machines instead.
+          That was a written prerequisite from day one rather than something discovered in week four.</p>
+        <p>Then the rules themselves, as plain functions with no graphics attached: board geometry, the
+          distance-to-gate field, ground state and consecration, movement, the exact order in which the dead
+          choose their next step, the dog's three rules, the turn pipeline, and seeded board generation that
+          replays identically every time from the same number.</p>
+        <div class="finding"><b>87 tests, green.</b> The standing rule is that a rule with no test is not a real
+          rule. The simulation also counts its own wasted turns as it runs — the measurement six sessions of
+          pencil work were trying to take by hand is now free, on every night anyone plays, and it feeds a
+          later phase directly.<span class="sha">0ed7beb</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, late morning</div>
-        <h4>Tried a second grave on the weak side — dead end</h4>
-        <p>Different tactic, same board: use the Sexton's early free turns to dig a second grave near the side
-          of the map giving the dog the most trouble, and use it to trap one of the two things coming from
-          that direction.</p>
-        <div class="finding">Worked out the geometry by hand before committing to it, and it doesn't work
-          on this board — the two graves near that side are positioned wrong relative to the path those
-          things actually walk. Ruled out cleanly, without having to hand-play the whole night to find
-          out.<span class="sha">c3968c3</span></div>
+        <div class="date">Aug 21, late</div>
+        <h4>Stopped hand-solving. Redesigned the action economy with Mike instead</h4>
+        <p>Six sessions and roughly six hours had gone into solving boards by hand against a wasted-turn bar
+          that Phase 1 never actually set as a pass/fail gate — it asked for a written answer to the question,
+          and that answer had landed the day before. Mike's read was blunt and correct: this was not a viable
+          way to design a game, and the instinct to keep trying until something proves out is the thing to
+          stop doing. So the loop itself got redesigned, in conversation, in one sitting.</p>
+        <div class="finding"><b>What changed:</b> falling into an open grave is now automatic, which collapses
+          the old five-turn removal cycle and turns digging into a <em>prediction</em> — you open the ground
+          where you worked out something will be. Burial becomes optional, and a debt: everything climbs back
+          out at dawn on its own, and burying costs a turn but keeps that one down for the rest of the year.
+          The spade, the lantern and the bell became objects you can set down rather than abilities you always
+          carry. And a year became twelve nights across four three-night sets, not four single
+          nights.<span class="sha">17f1789</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, midday</div>
-        <h4>Tried trapping instead of pushing — also dead, but the reason generalizes</h4>
-        <p>Tested a different capture idea: instead of directly shoving something into an open grave, cut
-          off every other direction it could walk so the grave is the only option left.</p>
-        <div class="finding">Doesn't work here either — and the reason turns out to apply to <em>every</em>
-          grave on this entire board, not just the ones tried: it takes three blockers to fully cut off a
-          target's escape routes, and there are only two mobile pieces to do it with. That's a real,
-          reusable finding about this board's layout, even though the specific idea didn't
-          pan out.<span class="sha">2d8f6b1</span></div>
-      </div>
-
-      <div class="entry">
-        <div class="date">Aug 21, afternoon</div>
-        <h4>Built a second board to isolate the real problem</h4>
-        <p>Built a brand-new test board, "All Souls," specifically to answer one question: does the
-          push-into-a-grave trick actually work when the grave is positioned correctly — right on the edge
-          of the map, directly in a target's path — instead of one tile off, like every grave on the first
-          board happened to be?</p>
-        <div class="finding"><b>Yes.</b> Clean capture, worked exactly as intended. That confirms the core
-          toolkit is sound. But the wasted-turn count <em>still</em> didn't improve — it's 4 on this board
-          too, for a completely different reason: not enough things happen at once to keep both the
-          Sexton and the dog busy for a full eight-turn night. That's a more useful failure than the
-          first one, because it points at <em>pacing</em>, not the rules themselves, as the
-          remaining problem.<span class="sha">f4563ba</span></div>
-      </div>
-
-      <div class="entry">
-        <div class="date">Aug 21, night</div>
-        <h4>Tested "more happening at once" directly — a different problem, and a more useful one</h4>
-        <p>Built a third board, same layout as the first two, with two more things rising out of the ground —
-          one on each side of the map that had been quiet before. The question from the last entry: if both
-          the Sexton and the dog have real work on both sides at once, does that finally close the gap?</p>
-        <div class="finding"><b>Result: the night was lost</b> — two things got through, unopposed, on the
-          side nobody was watching. But the reason is different and more useful than before: the player had
-          real decisions almost the entire night, including a genuine two-move combination between the dog
-          and the Sexton that showed up on its own rather than being planned — the dog knocked something off
-          its path into a spot right next to the Sexton, who then shoved it straight back. The loss came from
-          spending all of that attention on one side of the map while the other side walked through completely
-          unchallenged. That's a harder, more interesting problem than "nothing to do": it's "can't watch both
-          sides at once," and it's a fairer test of whether the design works. Also found and fixed a real gap
-          in how the dog's own rule was written down — it read as "she distracts whoever is closest to the
-          gate," which lets a fast, distant threat hog her attention for free, forever, even if she can never
-          reach it. Fixed to "she only distracts something she can actually reach."<span class="sha">954d8c1</span></div>
+        <div class="date">Aug 21, late night</div>
+        <h4>Checked both open threads from the replay directly — negative on both, but specific</h4>
+        <p>Two threads were left open by the last entry: is the extra slack in the replay actually spendable on
+          a second capture, and are the two payoff-turns structurally impossible to remove. Neither was assumed
+          — both were checked by hand, tile by tile, against this exact board.</p>
+        <div class="finding">The slack isn't spendable: every unused grave on this board either sits on ground a
+          threat still in transit needs kept slow (digging it early hands that threat a free extra step, the
+          same trap the very first board's audit warned about), is out of reach in the time available, or is the
+          single grave the plan already needs for something else. Checked all five remaining candidates
+          individually and each fails for its own, different reason — not a general hand-wave. The payoff-turns
+          are a different story: the only board so far to leave a turn genuinely live at the very end did it by
+          keeping a threat close enough to the gate that a real choice about where to stand only became
+          necessary right at dawn. This board's own late arrival never gets that close — the turns it has left
+          and the distance it needs mean it was mathematically stopped the moment it rose, so nothing forces a
+          fresh decision that late here. That's a fixable choice in how the next board gets built, not a gap in
+          the toolkit.<span class="sha">d915b0a</span></div>
       </div>
 
       <div class="entry">
@@ -907,88 +900,95 @@
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, late night</div>
-        <h4>Checked both open threads from the replay directly — negative on both, but specific</h4>
-        <p>Two threads were left open by the last entry: is the extra slack in the replay actually spendable on
-          a second capture, and are the two payoff-turns structurally impossible to remove. Neither was assumed
-          — both were checked by hand, tile by tile, against this exact board.</p>
-        <div class="finding">The slack isn't spendable: every unused grave on this board either sits on ground a
-          threat still in transit needs kept slow (digging it early hands that threat a free extra step, the
-          same trap the very first board's audit warned about), is out of reach in the time available, or is the
-          single grave the plan already needs for something else. Checked all five remaining candidates
-          individually and each fails for its own, different reason — not a general hand-wave. The payoff-turns
-          are a different story: the only board so far to leave a turn genuinely live at the very end did it by
-          keeping a threat close enough to the gate that a real choice about where to stand only became
-          necessary right at dawn. This board's own late arrival never gets that close — the turns it has left
-          and the distance it needs mean it was mathematically stopped the moment it rose, so nothing forces a
-          fresh decision that late here. That's a fixable choice in how the next board gets built, not a gap in
-          the toolkit.<span class="sha">d915b0a</span></div>
+        <div class="date">Aug 21, night</div>
+        <h4>Tested "more happening at once" directly — a different problem, and a more useful one</h4>
+        <p>Built a third board, same layout as the first two, with two more things rising out of the ground —
+          one on each side of the map that had been quiet before. The question from the last entry: if both
+          the Sexton and the dog have real work on both sides at once, does that finally close the gap?</p>
+        <div class="finding"><b>Result: the night was lost</b> — two things got through, unopposed, on the
+          side nobody was watching. But the reason is different and more useful than before: the player had
+          real decisions almost the entire night, including a genuine two-move combination between the dog
+          and the Sexton that showed up on its own rather than being planned — the dog knocked something off
+          its path into a spot right next to the Sexton, who then shoved it straight back. The loss came from
+          spending all of that attention on one side of the map while the other side walked through completely
+          unchallenged. That's a harder, more interesting problem than "nothing to do": it's "can't watch both
+          sides at once," and it's a fairer test of whether the design works. Also found and fixed a real gap
+          in how the dog's own rule was written down — it read as "she distracts whoever is closest to the
+          gate," which lets a fast, distant threat hog her attention for free, forever, even if she can never
+          reach it. Fixed to "she only distracts something she can actually reach."<span class="sha">954d8c1</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 21, late</div>
-        <h4>Stopped hand-solving. Redesigned the action economy with Mike instead</h4>
-        <p>Six sessions and roughly six hours had gone into solving boards by hand against a wasted-turn bar
-          that Phase 1 never actually set as a pass/fail gate — it asked for a written answer to the question,
-          and that answer had landed the day before. Mike's read was blunt and correct: this was not a viable
-          way to design a game, and the instinct to keep trying until something proves out is the thing to
-          stop doing. So the loop itself got redesigned, in conversation, in one sitting.</p>
-        <div class="finding"><b>What changed:</b> falling into an open grave is now automatic, which collapses
-          the old five-turn removal cycle and turns digging into a <em>prediction</em> — you open the ground
-          where you worked out something will be. Burial becomes optional, and a debt: everything climbs back
-          out at dawn on its own, and burying costs a turn but keeps that one down for the rest of the year.
-          The spade, the lantern and the bell became objects you can set down rather than abilities you always
-          carry. And a year became twelve nights across four three-night sets, not four single
-          nights.<span class="sha">17f1789</span></div>
+        <div class="date">Aug 21, afternoon</div>
+        <h4>Built a second board to isolate the real problem</h4>
+        <p>Built a brand-new test board, "All Souls," specifically to answer one question: does the
+          push-into-a-grave trick actually work when the grave is positioned correctly — right on the edge
+          of the map, directly in a target's path — instead of one tile off, like every grave on the first
+          board happened to be?</p>
+        <div class="finding"><b>Yes.</b> Clean capture, worked exactly as intended. That confirms the core
+          toolkit is sound. But the wasted-turn count <em>still</em> didn't improve — it's 4 on this board
+          too, for a completely different reason: not enough things happen at once to keep both the
+          Sexton and the dog busy for a full eight-turn night. That's a more useful failure than the
+          first one, because it points at <em>pacing</em>, not the rules themselves, as the
+          remaining problem.<span class="sha">f4563ba</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 22</div>
-        <h4>Built the simulation — and it is deliberately boring code</h4>
-        <p>Phase 1 closed. The first thing written was not the game: it was the automated build-and-test
-          pipeline, because the machine this project is developed on is a Raspberry Pi that runs the household
-          and is hard-blocked from compiling anything this size. Every check runs on GitHub's machines instead.
-          That was a written prerequisite from day one rather than something discovered in week four.</p>
-        <p>Then the rules themselves, as plain functions with no graphics attached: board geometry, the
-          distance-to-gate field, ground state and consecration, movement, the exact order in which the dead
-          choose their next step, the dog's three rules, the turn pipeline, and seeded board generation that
-          replays identically every time from the same number.</p>
-        <div class="finding"><b>87 tests, green.</b> The standing rule is that a rule with no test is not a real
-          rule. The simulation also counts its own wasted turns as it runs — the measurement six sessions of
-          pencil work were trying to take by hand is now free, on every night anyone plays, and it feeds a
-          later phase directly.<span class="sha">0ed7beb</span></div>
+        <div class="date">Aug 21, midday</div>
+        <h4>Tried trapping instead of pushing — also dead, but the reason generalizes</h4>
+        <p>Tested a different capture idea: instead of directly shoving something into an open grave, cut
+          off every other direction it could walk so the grave is the only option left.</p>
+        <div class="finding">Doesn't work here either — and the reason turns out to apply to <em>every</em>
+          grave on this entire board, not just the ones tried: it takes three blockers to fully cut off a
+          target's escape routes, and there are only two mobile pieces to do it with. That's a real,
+          reusable finding about this board's layout, even though the specific idea didn't
+          pan out.<span class="sha">2d8f6b1</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 22 – 23</div>
-        <h4>Put it on a phone — the kill-gate artifact exists</h4>
-        <p>A browser layer over the simulation, and then the part that actually matters: a public link. Tap a
-          verb, tap a tile; the night runs through its phases; the schedule of everything that will rise is
-          printed on the page, because nothing in this game is hidden. It is coloured squares with labels on
-          them and it is meant to be — art is Phase 4.</p>
-        <div class="finding"><b>Live at
-          <a href="https://play.lamplight.mikecarmody.net">play.lamplight.mikecarmody.net</a>.</b> Played end
-          to end on a 390-pixel phone viewport to check the claim rather than assume it: the dead walked, the
-          tally climbed, two reached the gate, and the night ended on an unambiguous screen saying so. That
-          link is Phase 2's whole deliverable — the go/no-go on this entire project is Mike opening it and
-          losing on it.<span class="sha">4318db4</span></div>
+        <div class="date">Aug 21, late morning</div>
+        <h4>Tried a second grave on the weak side — dead end</h4>
+        <p>Different tactic, same board: use the Sexton's early free turns to dig a second grave near the side
+          of the map giving the dog the most trouble, and use it to trap one of the two things coming from
+          that direction.</p>
+        <div class="finding">Worked out the geometry by hand before committing to it, and it doesn't work
+          on this board — the two graves near that side are positioned wrong relative to the path those
+          things actually walk. Ruled out cleanly, without having to hand-play the whole night to find
+          out.<span class="sha">c3968c3</span></div>
       </div>
 
       <div class="entry">
-        <div class="date">Aug 24</div>
-        <h4>Mike played it. The kill gate passed.</h4>
-        <p>The whole reason Phase 2 exists: sit down with the build on a phone and find out for real whether a
-          board you cannot attack is tension or a chore. Not simulated, not argued — played, twelve days ahead
-          of the September 3 date the charter set aside for it.</p>
-        <div class="finding"><b>Verdict: "the prototype seems good."</b> Balance and timing still need work, but
-          that was expected this early, not a mark against the core bet — his own words were "of course... but
-          it's early." Phase 2 is closed. One piece of feedback carries straight into Phase 3 and is called out
-          below rather than buried in a checklist: enemies and the environment should telegraph their next move
-          before the player commits, Into the Breach style. It costs nothing new in the simulation — every board
-          is already fully precomputable one step ahead, since nothing in this game hides information by design
-          — it is exposing that in the interface, not changing the rules. It needs to land before boards get
-          hand-authored, on the assumption that players can read a threat the way the Phase 1 hand-solver
-          could.</div>
+        <div class="date">Aug 21, morning</div>
+        <h4>Gave the Sexton more speed — made it worse</h4>
+        <p>The obvious first fix: let the Sexton cover more ground each turn. Re-ran the exact same test board
+          under the new rule to see if it helped.</p>
+        <div class="finding"><b>Result: worse, not better</b> — 4 wasted turns instead of 3. Traced exactly
+          why: his one useful position was pinned by <em>someone else's</em> schedule, not his own speed, so
+          moving faster didn't change when he could actually get there. Also found and closed a real gap in
+          the rules along the way (what happens when a player and a walking corpse race for the same
+          tile — it was never actually written down).<span class="sha">a3b5eb2</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 20</div>
+        <h4>Wrote the full rules, hand-solved the first board</h4>
+        <p>Complete ruleset written down: turn order, how the dead move and decide where to go, how digging,
+          burying and pushing work, win and loss conditions. Then hand-played the first test board
+          ("Michaelmas") move by move on paper, writing down the reasoning behind every step — and it held.
+          The night was survived.</p>
+        <div class="finding"><b>But:</b> the design's own bar for a good puzzle — no more than 2 turns out of
+          8 where the player has nothing real to decide — wasn't met. Michaelmas hit 3. Officially not
+          closed.<span class="sha">09309b7</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 19 – 20</div>
+        <h4>Picked the concept, wrote the charter</h4>
+        <p>Mike reviewed three pitched game concepts and picked this one: a solo puzzle where you play a
+          churchyard keeper on one of the four nights a year the dead climb out, working with a dog and a
+          lantern, with no combat and no randomness anywhere. Named it <em>Lamplight</em>. The project
+          charter — seven phases, dated milestones, and the point where the whole idea gets a real go/no-go
+          decision — was written the same night.</p>
       </div>
 
     </div>
