@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">87</div>
+        <div class="num ok">106</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,31 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 24 – 25</div>
+        <h4>The churchyard now tells you what it is about to do</h4>
+        <p>The first thing built after the kill gate, and it came straight out of Mike playing it: before you
+          commit a turn, the board shows what every risen thing will do on the coming one — the tiles it steps
+          onto, in order, and whether it ends up on the board, in an open grave, or through the gate. Into the
+          Breach's contract. It takes nothing away, because nothing in this game was ever hidden behind a dice
+          roll; the coming turn was always derivable with a pencil. This just does the arithmetic in front of
+          you, and it recomputes after every single tap, so you watch your own move bend the prediction.</p>
+        <div class="finding"><b>The design decision worth writing down: the prediction is produced by the
+          resolver, not by a second copy of it.</b> The turn resolver now records each step as it takes it, and
+          the forecast is that same code run against a copy of the board. There is no parallel implementation
+          that can drift, and a test plays ten generated boards to the end asserting the prediction and the turn
+          never once disagree. In a game whose whole premise is perfect information, a telegraph that can lie
+          would be worse than none at all.<span class="sha">3c291a5</span></div>
+        <div class="finding">A rule had to be settled to ship it, and it was settled the honest way — by
+          building both. The lantern is meant to show these routes only within two tiles of the Sexton, so that
+          information is something you buy with position. That collides with showing everything. The rules
+          document had already parked exactly this question on "we find out when it is playable," so the build
+          carries a switch in the header that flips between the 5×5 lamplight and the whole board, and it can be
+          answered by feel in one sitting. One consequence fell out of it: <em>whether the turn loses the night
+          is arithmetic too</em>, so while anything is out in the dark the game says how many things it cannot
+          preview rather than printing a verdict it is not entitled to.</div>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 24</div>
