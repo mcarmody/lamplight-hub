@@ -795,6 +795,31 @@
     <div class="timeline">
 
       <div class="entry">
+        <div class="date">Aug 26 – 27</div>
+        <h4>Two more boards into the solver, and the failure isn't one board's fault</h4>
+        <p>Last session's solver had only ever measured one board, Michaelmas. Two more from
+          Phase 1 existed as write-ups only — <em>All Souls</em>, built to test whether a grave on
+          the true edge of a creature's own lane makes a capture actually work, and
+          <em>Candlemas</em>, built to test whether two simultaneous flanks force real triage
+          instead of one — but neither had ever been typed into the game's own board format, so
+          the solver had never seen them. Ported both tonight, geometry and rising schedule only;
+          the hand solves that went with them were played against a ruleset this project has since
+          replaced, and re-deriving the answer from scratch is the entire point of having a solver.</p>
+        <div class="finding"><b>Both fail the no-dominant-piece bar exactly like Michaelmas did.</b>
+          The gravedigger, the bell and the dog are each individually optional on every authored
+          board in the project — three for three now. Candlemas is the sharper of the two results:
+          it's the board that took three separate Phase 1 sessions just to survive, built
+          specifically to force the player to cover two lanes at once, and the solver still finds a
+          single-piece win on it. Whatever makes one piece dominate isn't a property of any one
+          board's layout.</div>
+        <div class="finding">Every authored board so far uses only the Revenant — the default
+          creature, the one with no resistance to any of the three pieces. The rules already define
+          a second kind, the Curate, that ignores the dog outright, and nothing built yet has tried
+          it. That's the more promising next lever, ahead of authoring more Revenant-only boards
+          that this session's numbers suggest will land in the same place.<span class="sha">893e60d</span></div>
+      </div>
+
+      <div class="entry">
         <div class="date">Aug 25 – 26</div>
         <h4>Built the solver. It failed every board in the project.</h4>
         <p>Phase 3's job is twenty hand-made boards, each one winnable more than one way, and none of them
