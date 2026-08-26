@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">138</div>
+        <div class="num ok">144</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,60 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
+        <h4>The instrument was lying, and it was lying in one direction</h4>
+        <p>Phase 3 judges each board on two things: solvable more than one way, and no
+          dominant piece. The second is checked by re-solving with each piece switched off
+          — if the night still falls without the bell, the bell was optional. Four authored
+          boards had now failed that check, and the run of identical verdicts was starting
+          to look less like four bad boards and more like a bad measurement.</p>
+        <p>It was a bad measurement. Freezing a piece only ever <em>removes</em> options, so
+          any win found with a piece switched off is also a perfectly legal win of the full
+          game. The two searches were never independent readings to be compared — one is a
+          lower bound on the other. The report had been treating the difference between
+          them as a fact about the board.</p>
+        <div class="finding"><b>The tell was a board that was both unwinnable and winnable.</b>
+          A candidate scored <b>0 solutions</b> in the full search and <b>2</b> with the bell
+          frozen — a contradiction on a single row. The solver is a width-limited beam, and a
+          constrained search has a smaller branching factor to spend that width on, so it
+          searches <em>better</em> and wins where the full search comes back empty. Widening
+          the beam made it worse, not better: at width 256 the same board read 0 against 6.</div>
+        <p>The error had a direction, which is what makes it worth this much text. It only
+          ever over-reported pieces as <strong>optional</strong> — precisely the judgement
+          the twenty-board pass is being steered by. Every board in the report moved once
+          the five searches were unioned (Michaelmas went from 6 solutions to 9), and the
+          piece-usage histogram fell from a suspiciously flat 100% / 100% / 100% to
+          91% / 84% / 91%. That perfect score had been an artifact of only ever sampling
+          the one search that tends to use everything.</p>
+        <p>The second finding is why the boards were failing underneath the bad instrument.
+          A new measure, <b>must-stop</b>, asks how many risen things the player is actually
+          <em>obliged</em> to stop: what an idle night concedes, minus the slack the loss
+          number allows. It costs no search at all and it explains the corpus at a glance.
+          Candlemas scores 1. Seed 5 — the generated board the report already flagged as
+          winning itself — scores 0.</p>
+        <div class="finding"><b>At must-stop 1 the bar is unreachable, whatever the geometry.</b>
+          One intervention wins the night, so every piece is individually sufficient, so
+          every piece is individually optional. Three boards had been failing the same check
+          for the same reason and the report had no column that said so. It does now, and it
+          names the cause on the row.</div>
+        <p>Necessary, not sufficient — and the counter-example is the honest part. A
+          candidate deliberately built up to must-stop 4 still came back with all three
+          pieces optional, because the dog alone can go and stand in the gate funnel and
+          hold it. That is Risk 3 from the original pitch — "the dog can trivialise the
+          board" — arriving with a number attached rather than as a worry.</p>
+        <p>One mechanical detail fell out along the way and has been written into the rules
+          as the first real evidence on a question held open since Phase 1. <code>SHOVE</code>
+          pushes a thing directly away from the Sexton, so to shove a thing <em>outward</em>
+          off a tile beside the tower he would have to be standing on the tower — which is
+          impassable to him. <code>RING</code> pushes away from the tower by definition. So
+          on the four tiles adjacent to the tower the outward push belongs to the bell and
+          to nothing else, and a grave one tile further out is a burial only a ring can make.
+          No board has ever used it. That is an argument against narrowing the bell's
+          shockwave before something has tried the exclusivity it already has.</p>
+        <p class="meta">144 tests green (+6). <code>1be8b9e</code></p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 26</div>
