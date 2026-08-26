@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">131</div>
+        <div class="num ok">138</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,25 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
+        <h4>Mike played it again, immediately: the dog gets her own light, the lantern gets rounder</h4>
+        <p>Minutes after the lit/unlit boundary landed, two more calls came back from actually
+          looking at it: the dog should carry a little light of her own, and the Sexton's lantern
+          reads too square — cut the corners.</p>
+        <div class="finding"><b>Both are rule fields now, not renderer tricks.</b> A new
+          <code>dogLanternRadius</code> (default 1, plain Chebyshev box, independent of the
+          Sexton's) sits beside <code>lanternRadius</code> in the ruleset. The Sexton's own box
+          gets a new <code>withinLanternShape</code> geometry function — the same Chebyshev box,
+          minus the four tiles at exactly the radius on both axes, so it reads as a pool of light
+          rather than a square. <code>isLit</code> is now "in the Sexton's shape, or within the
+          dog's radius" — one function, both rules, and the renderer needed zero changes because
+          it already treats that function as the single source of truth. RULES.md §7 updated;
+          138 tests green, up from 131, including two proving the corner cut against its own
+          exact corner tiles and two proving the dog lights ground the Sexton's radius does
+          not reach.<span class="sha">f78fc86</span></div>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 26</div>
