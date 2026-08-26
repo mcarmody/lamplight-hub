@@ -796,6 +796,26 @@
 
       <div class="entry">
         <div class="date">Aug 26</div>
+        <h4>An experiment: what if the dark actually hid something?</h4>
+        <p>Playing the rounder lantern, Mike noticed the thing RULES.md §0 has said all along —
+          a risen thing's position and kind are never hidden, only its predicted route is — and
+          asked, for now, to try the opposite: hide the things themselves outside the light.</p>
+        <div class="finding"><b>Scoped as a renderer-only experiment, not a rule change.</b>
+          <code>isLit</code> and everything in <code>src/sim</code> are untouched — a risen thing
+          outside the lantern still exists, still has a kind, still walks its real route, all
+          exactly as before. The board component alone now withholds its badge on an unlit tile.
+          The Sexton and the dog still always show (they are the player's own pieces), terrain and
+          ground state still always show (hiding those makes the board unplayable), and the
+          rising-next-turn cairn markers are untouched — RULES.md §7 already treats that as its
+          own deliberate exception, a different question from this one. Two other notes from the
+          same conversation are logged for later, not built now: a real "full visibility"
+          difficulty mode (needs Phase 6's difficulty-mode system, which doesn't exist), and a
+          sunset-to-full-dark ramp across a run (needs Phase 5's multi-night structure, which
+          doesn't exist either).<span class="sha">bb9b20c</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
         <h4>Mike played it again, immediately: the dog gets her own light, the lantern gets rounder</h4>
         <p>Minutes after the lit/unlit boundary landed, two more calls came back from actually
           looking at it: the dog should carry a little light of her own, and the Sexton's lantern
