@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">124</div>
+        <div class="num ok">131</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,30 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
+        <h4>The fix for the dark board had a hole in it, and the rules made the hole common</h4>
+        <p>An hour after the lit/unlit boundary went in, a read of the same code found it was
+          being switched off exactly where it mattered. The telegraph ring and the darkness are
+          both inset box-shadows, and the tile chose between them with a ternary — ring, or
+          darkness, never both. So any tile that was <i>both</i> telegraphed and unlit dropped
+          its darkness entirely and read as lit.</p>
+        <p>That would be a footnote if it were rare. RULES.md §7 makes it routine: the lantern
+          withholds the arithmetic, not the inputs, and the rising schedule is named explicitly
+          among the things it never hides. The simulation honours that to the letter — risings
+          are reported wherever they are, dark or not — so every cairn with something rising
+          next turn punched a lit-looking hole through the dark region, as did every previewed
+          path that crossed dark ground on its way somewhere. The board was brightest in exactly
+          the places something was about to happen.</p>
+        <div class="finding"><b>Box-shadow takes a list, so the layers compose instead of
+          competing</b> — ring first, because CSS paints a shadow list front-to-back and a ring
+          listed after a 999px spread is buried by it. The decision moved out of the component
+          into a pure function with six tests, including the regression and the paint-order
+          requirement, checked to fail against the old ternary rather than merely pass against
+          the new code. The component has no test harness, and eyeballing is what missed this
+          the first time. 131 tests green, up from 124.<span class="sha">44f63f6</span></div>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 26</div>
