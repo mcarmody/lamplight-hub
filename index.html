@@ -795,6 +795,23 @@
     <div class="timeline">
 
       <div class="entry">
+        <div class="date">Aug 26</div>
+        <h4>The lantern toggle was untestable, because nothing on screen was ever dark</h4>
+        <p>Mike played the "5×5 / whole board" lantern-radius switch from RULES.md §7 — the
+          open question of whether the withheld-information rule is worth its own confusion —
+          and came back with a flatter problem than a design verdict: he couldn't tell the two
+          settings apart. The sim has enforced the boundary correctly since Phase 2 (an unlit
+          thing's path is withheld from the telegraph, its route unknown), but the board itself
+          rendered every tile the same regardless of the setting. There was nothing to look at.</p>
+        <div class="finding"><b>Fixed the actual gap: the sim's own lit/unlit check now draws
+          the boundary it already enforces.</b> Tiles outside the Sexton's Chebyshev radius darken
+          — a heavy inset shadow and desaturation, not a subtle tint — so the two lantern settings
+          are now visibly, immediately different, and the design question Phase 2 was supposed to
+          answer by play can actually get answered by play. No rule changed; this was purely the
+          renderer catching up to what the simulation already decided every turn.<span class="sha">6415e2f</span></div>
+      </div>
+
+      <div class="entry">
         <div class="date">Aug 26 – 27</div>
         <h4>Two more boards into the solver, and the failure isn't one board's fault</h4>
         <p>Last session's solver had only ever measured one board, Michaelmas. Two more from
