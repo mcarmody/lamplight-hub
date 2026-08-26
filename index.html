@@ -796,6 +796,32 @@
 
       <div class="entry">
         <div class="date">Aug 26</div>
+        <h4>Board 04 "Rogation": does the dog-immune kind actually break the dog-alone win?</h4>
+        <p>Phase 3's solver had found all three authored boards — Michaelmas, All Souls,
+          Candlemas — winnable with any one of sexton, bell or dog frozen, including a
+          "dog alone" win on Michaelmas: four moves, sexton and bell both idle, night
+          survived. All three use only the Revenant kind. <code>curate</code>
+          (RULES.md §3) skips the dog's ward outright and had never appeared on an
+          authored board — the one untried lever.</p>
+        <p>Rogation isolates it on purpose: it is Michaelmas's exact skeleton — tower,
+          gate, plots, cairns, starting positions — with every rising reclassified
+          revenant → curate and nothing else touched, so a changed verdict can only be
+          the dog-immunity, not a differently-shaped board.</p>
+        <div class="finding"><b>Yes, on the specific line it was built to test.</b>
+          A direct probe — solve with sexton and bell both frozen, dog only — finds 1
+          solution on Michaelmas and 0 on Rogation. The standard solver report agrees:
+          Rogation's "dog off" column flips from Michaelmas's "still won" to no
+          solution found, and the verdict drops from "sexton, bell, dog optional" to
+          just "bell optional". It does not fully clear the no-dominant-piece bar —
+          sexton alone still wins with bell and dog both frozen, same as it does on
+          Michaelmas, a pre-existing and separate finding, not a new problem curate
+          introduced. Per this project's own rule against re-authoring to chase a
+          result, one board is the test; the finding is committed as-is rather than
+          iterated on.<span class="sha">b3e9f6a</span></div>
+      </div>
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
         <h4>An experiment: what if the dark actually hid something?</h4>
         <p>Playing the rounder lantern, Mike noticed the thing RULES.md §0 has said all along —
           a risen thing's position and kind are never hidden, only its predicted route is — and
