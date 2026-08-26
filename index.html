@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 — the kill gate passed, now boards that matter</h3>
+    <h3 class="section-sub">Phase 3 of 7 — the solver is built; the boards have to earn their place</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">106</div>
+        <div class="num ok">124</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,38 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 25 – 26</div>
+        <h4>Built the solver. It failed every board in the project.</h4>
+        <p>Phase 3's job is twenty hand-made boards, each one winnable more than one way, and none of them
+          winnable while ignoring one of the three pieces. Both of those are claims that are very easy to make
+          and very easy to be wrong about, so the phase starts with the machine that checks them rather than
+          with the boards: a search that plays a night out against the real rules and reports the ways it found
+          to survive. Twenty boards authored without one would be twenty boards verified by assertion.</p>
+        <div class="finding"><b>It is deliberately a finder and not a prover, and the report says so on its own
+          first page.</b> Every plan it claims is replayed from the opening position through the ordinary game
+          code and has to come back a win, so a reported solution cannot be an artefact of the search's own
+          bookkeeping. The other direction does not hold: "no solution found" means this search did not find
+          one, which is evidence and not proof. Overstating that would poison the entire phase, because every
+          board decision after this point rests on it.<span class="sha">54413fd</span></div>
+        <div class="finding"><b>Then it was pointed at the boards and the news was bad.</b> Michaelmas — the
+          board solved by hand back in Phase 1 — turns out to be winnable <em>three separate ways with a piece
+          switched off</em>: by the gravedigger alone, with the bell and the dog idle; by the <em>dog</em> alone,
+          four moves and nothing else; and with the bell never rung. Six machine-generated boards were the same
+          or worse, and one of them survives eight turns of the player doing literally nothing. Not one board in
+          the project currently clears the bar. That was named as a risk in the original pitch — "the dog can
+          trivialize the board" — and it has now arrived on schedule with numbers attached, which is the whole
+          reason for measuring instead of asserting. It is a far sharper brief for the twenty boards than
+          "escalating difficulty" was.</div>
+        <div class="finding">A second thing fell out on the way in, and it invalidated a number the project had
+          been quoting. The scoring function that decides which of two positions is better had its sign the
+          wrong way round: it rated a walking corpse standing at the churchyard gate as a <em>better</em>
+          position than one stuck in the far corner. The automatic play-tester built on it had therefore been
+          herding the dead toward the gate, and losing Michaelmas on turn six — a board known to be survivable.
+          Five tests covered that function and not one went red, because every one of them checked the shape of
+          the number and none asked which direction it pointed.</div>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 24 – 25</div>
