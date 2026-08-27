@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">175</div>
+        <div class="num ok">181</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,48 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 27</div>
+        <h4>Why the bell decides whether the last problem is solvable</h4>
+        <p>The session before this one ended with a plan: to make all three pieces matter, build a
+          board that asks for two things <em>in the same moment</em>, so that whichever piece is
+          free cannot cover both. This session went to do that, and found out first that there was
+          no way to tell whether a board did it &mdash; and then that on the board we already had,
+          it cannot be done at all.</p>
+        <p>The measuring tool built yesterday adds up a whole night at once: here is everything the
+          board demands, here is what each piece could manage across eight or nine turns. That is
+          blind to <em>timing</em> by construction. A night that spreads its work evenly and a night
+          that dumps all of it in the last three turns score exactly the same, and the second is
+          much harder for one piece, because nobody can save up unused turns.</p>
+        <p>So the new tool prices each stretch of the night separately &mdash; the last four turns
+          on their own, the last three, and so on &mdash; and divides the work left over by the time
+          left to do it. That gives a rate: how many things need holding off per turn. One piece
+          can hold off one thing a turn. Above that number, two pieces have to be working at the
+          same time, which is precisely the thing we were trying to build.</p>
+        <p><b>First result: not one board in the project has ever come close.</b> All thirteen pile
+          their arrivals into the opening turns, so the opening is always the tightest stretch and
+          the peak rate is 0.11 against the 1.0 needed. The idea had never actually been tested,
+          because no board could express it. Four attempts at bolting a late wave onto the existing
+          board failed to move the number at all.</p>
+        <p>The second result explains the first, and it is the useful one. For a moment like this to
+          be worth building, two things have to be true at once: one piece must not be able to cover
+          it, and <em>two</em> pieces must. The gap between those two lines turns out to be exactly
+          the width of what the bell is worth on that board &mdash; and on the board that finally
+          needed the gravedigger, the bell is worth nothing, because of where the tower sits
+          relative to the gate. A ring there shoves things <em>toward</em> the exit.</p>
+        <p>So the gap is zero, and no schedule of arrivals can land inside it. Piling on more
+          pressure does not approach the problem, it sails past it into a board nobody can win.
+          That is not a setback so much as a piece of arithmetic that saves the next several
+          sessions: <b>the bell&rsquo;s position is upstream of the whole idea, not a separate
+          worry.</b> Fix where the tower stands, and the gap opens to whatever the bell is then
+          worth.</p>
+        <p>Which is now a concrete instruction rather than a hunch. Sweeping four gate positions
+          against four night lengths across the four most promising boards turned up one that keeps
+          everything the nine-turn board won &mdash; still no single piece able to carry the night
+          &mdash; and opens the gap at the same time. That is the sheet the next session starts
+          from.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 27</div>
