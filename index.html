@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 — the solver is built; the boards have to earn their place</h3>
+    <h3 class="section-sub">Phase 3 of 7 — the solver is built, and it says the four boards are one board</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">149</div>
+        <div class="num ok">159</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,52 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 27</div>
+        <h4>Four boards, one board</h4>
+        <p>Tonight was meant to be a quick check of a nasty little theory, and the theory
+          turned out to be wrong in the most useful way available: it was wrong, and finding
+          out why exposed something worse sitting underneath it.</p>
+        <p>The theory. A player's piece is furniture — a risen thing is refused a square the
+          Sexton or the dog is standing on exactly as it is refused the tower. So a piece
+          parked somewhere is a permanent wall: it costs no action, it never wears off, and
+          it does not care what kind of thing walks into it. If two bodies could seal a
+          board just by standing still from the first turn, then the night is already won,
+          every verb is decoration, and no board could ever <em>require</em> all three
+          pieces — which is exactly the bar Phase 3 keeps failing.</p>
+        <p>So: what is the smallest number of squares a player could stand on to wall every
+          grave off from the gate? It is a question about the printed sheet alone, with no
+          simulation at all, and it turns out to be a textbook minimum-cut problem, which
+          means it is very cheap to answer. The answer for every authored board is
+          <b>four</b>. Two pieces cannot seal any of them. The theory is dead, and parking
+          is not why the corpus keeps failing.</p>
+        <div class="finding"><b>But all four boards do not merely score four — they score
+          four at the same four squares: C5, D5, B6, E6.</b> Because all four put the tower
+          on C3 and the gate on C6/D6, and three of the four are the same sheet down to
+          where the pieces start. Four authored boards, one geometry. They fail the bar
+          identically because structurally they <em>are</em> the same board four times.</div>
+        <p>Everything varied so far has been dressing: which kind of thing rises, on which
+          turn, out of which grave, with the plots shuffled. Never the shape of the approach
+          to the gate. The randomly generated baseline boards — the ones the authored boards
+          are supposed to be beating — already spread across 4, ∞, ∞, 4, 3, 4 on this
+          measure, because nobody was hand-holding their geometry.</p>
+        <p>Gate geometry is a lever this project has never pulled, and as of tonight it is a
+          lever with a gauge on it. On board 01's own sheet, without touching anything else:
+          a single gate square gives three, a four-wide gate along the south wall gives six,
+          moving the tower to D5 gives three, and a gate placed beside a grave gives ∞ —
+          a thing that rises against the threshold cannot be walled off at all, only
+          answered. Boards 05 onward get built against that number.</p>
+        <p>One implementation note, recorded because it cost two silent
+          minutes: the "uncuttable" capacity in the flow graph has to be a large finite
+          number rather than actual infinity. With infinity, a path made entirely of
+          uncuttable steps subtracts infinity from infinity, gets <em>NaN</em>, and
+          <em>NaN</em> compares false against every threshold — so the exhausted
+          channels stayed open and the search ran forever. It hung on the first gate placed
+          next to a grave. There is now a test that puts it exactly there.</p>
+        <p>149 tests to 159. Nothing shipped to the playable build tonight; this was the
+          instrument, and the instrument said the boards are one board.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 26</div>
