@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">144</div>
+        <div class="num ok">149</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,49 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 26</div>
+        <h4>The instrument was lying in the other direction too</h4>
+        <p>Earlier the same day the report was corrected for over-reporting pieces as
+          <em>optional</em>. Tonight the opposite error turned up in the same two columns, and
+          it had been quietly holding up the only good news the project had.</p>
+        <p>Each board is checked by re-solving it with one piece switched off. A win found
+          that way is self-certifying — the solver replays every plan through the plain
+          simulation, so one attempt finding it settles the matter. A <em>dash</em> claims
+          something far stronger: that no win exists without that piece. A finder can never
+          establish that; all a dash can honestly mean is "this search looked hard and
+          failed." The report was giving the strong claim the weaker search — four restarts
+          for the wins, two for the dashes.</p>
+        <div class="finding"><b>Board 04 "Rogation" was the corpus's best result, and it is
+          not true.</b> Its verdict read <em>bell optional</em> — the only board where two of
+          the three pieces came back required, and therefore the only evidence the
+          no-dominant-piece bar was reachable at all. Its dog dash falls at 4 restarts. Its
+          sexton dash falls at 32. Rogation requires no piece whatsoever.</div>
+        <p>Which leaves the corpus at <b>0 for 10</b>: every authored board and every generated
+          baseline can be won while ignoring any one of the three pieces. That is worse than
+          last night's number and it is the real one. There is no restart budget at which a
+          dash becomes safe — only budgets at which it has not fallen yet.</p>
+        <p>The fix is to make the budget match the claim. Every piece-off check now climbs an
+          escalating ladder and stops at the first rung that finds a win, so a "still won"
+          still costs two restarts and only a dash pays all of them — which is precisely what
+          makes running the whole report out to sixty-four affordable.</p>
+        <p>Two tools came out of the same session, and the second exists because of the
+          first's mistake. One puts a board that is <em>not</em> in the corpus through the same
+          two questions, so a candidate can be measured without contaminating the committed
+          report. The other searches board space automatically for a board where a chosen
+          piece refuses to be optional, checking the free measure — must-stop — before ever
+          spending a search. Its first hit evaporated under a deeper look. It had been probing
+          at exactly two restarts. That is how the ladder got found.</p>
+        <p>Two candidates now hold a sexton dash out to sixty-four restarts, which nothing on
+          this project ever has. Neither has been promoted to a real board, because one that
+          requires a single piece and not the other two <em>is</em> a board with a dominant
+          piece — the bar stated backwards. The open problem is unchanged and better measured:
+          the Sexton can shove a thing back uphill indefinitely and the dog can hold a gate
+          mouth indefinitely, so two pieces cover two corridors for a whole night, and nothing
+          on the board yet needs a third answer.</p>
+        <p class="meta">149 tests green (+5). <code>32d651e</code></p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 26</div>
