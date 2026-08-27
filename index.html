@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 — twelve boards tried, twelve failed, and the most promising fix has now been ruled out</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; thirteen boards tried, and the thirteenth finally makes a piece necessary</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">172</div>
+        <div class="num ok">175</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,40 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 27</div>
+        <h4>A board that finally needs the gravedigger</h4>
+        <p>Twelve boards in a row have failed the same test: the player could always drop one of
+          the three pieces and still win the night, so nothing on the board was really
+          <em>needed</em>. This afternoon one of them stopped failing.</p>
+        <p>The fix turned out to be the length of the night, which nobody had thought to vary.
+          Burying something takes the gravedigger two moves &mdash; open the grave, then fill it
+          &mdash; so over a whole night he manages half as many burials as there are turns. That
+          number goes up in steps of <em>two</em>. An odd-numbered night gives him nothing the
+          even one below it did not already give him. The demands on him have no such step: a
+          longer night simply lets more things reach the gate.</p>
+        <p>So the two lines cross, and the crossing is narrow. Sweeping every board in the project
+          at every length from four turns to twelve &mdash; a hundred and eight combinations
+          &mdash; exactly one came out with no piece able to carry the night alone. It is the
+          board already called 05f, run for <b>nine</b> turns instead of eight. At eight he has a
+          burial to spare. At nine, two more things get through and he is one short. At ten he
+          gets that burial back and the board goes ordinary again. A window one turn wide.</p>
+        <p>Run at nine turns and handed to the solver at its slowest, most thorough setting, the
+          board came back with twelve different winning lines &mdash; and not one of them without
+          the gravedigger. <b>That is the first piece this project has ever managed to make
+          genuinely required.</b> It was checked at the deepest setting on purpose: an earlier
+          board looked like it had done this in a quick pass and lost it under real scrutiny.</p>
+        <p>The dog and the bell are still individually droppable, and that is the expected shape
+          rather than a disappointment. The gravedigger is one burial short of finishing alone, so
+          the last thing has to be held off instead of removed &mdash; and holding is work either
+          the dog or the bell can do. Whichever one is free will serve, so neither is
+          irreplaceable while the pair of them is. Removing is the job with only one candidate,
+          which is precisely why he is the one that became necessary.</p>
+        <p>Half of the bar, then, cleared for the first time. Making all three matter at once
+          needs a board that asks for two things in the same moment, in places one piece cannot
+          reach &mdash; which is the next thing to try.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 27</div>
