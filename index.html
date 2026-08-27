@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 — the solver is built, and it says the four boards are one board</h3>
+    <h3 class="section-sub">Phase 3 of 7 — twelve boards tried, twelve failed, and the most promising fix has now been ruled out</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -793,6 +793,53 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 27</div>
+        <h4>The lever was pulled, and it is not the lever</h4>
+        <p>The session before this one ended by handing the project a promising-looking
+          lever and a gauge to measure it with. The shape of the ground between the graves
+          and the gate had never been varied — ten boards had inherited the bell tower's
+          square from the very first one, and nobody had ever chosen it. Tonight was
+          spent pulling that lever properly. It does not work, and knowing that is worth
+          more than another board would have been.</p>
+        <p>First the measuring got automated. Instead of editing a board sheet by hand,
+          re-running, reading one number and editing again, a new tool holds a sheet's
+          graves and schedule fixed and slides the tower across every legal square and the
+          gate across every legal position along the south wall, scoring each arrangement.
+          About five hundred of them, in under a second. That is the difference between a
+          lever you can talk about and a lever you can search.</p>
+        <p>It immediately said two things about the inherited setup. On board 01's own
+          sheet, 273 of the 527 legal arrangements are unsealable, and the one the project
+          has been using is not one of them. And more pointed: <b>the tower is a free wall.</b>
+          It is impassable to everything, so wherever it stands it is doing a player piece's
+          job for nothing — and on the inherited square it is standing directly in the
+          bottleneck, quietly making the board easier. Move it four squares and the number
+          of bodies needed to seal the yard goes from five to six.</p>
+        <p>So two new boards were built one edit apart, to keep the two changes from
+          confusing each other: one moves only the gate, the second moves only the tower —
+          the first board in this project whose tower is not on C3. Then both were solved.</p>
+        <div class="finding"><b>The good board is impossible to seal by standing still, and
+          every piece is still optional.</b> Six bodies needed to wall it off, and the
+          player only has three — so parking cannot win it. It does not matter. The solver
+          wins that board while ignoring the Sexton, and again while ignoring the bell, and
+          again while ignoring the dog. Twelve boards have now been authored or generated
+          and twelve have failed the same test.</div>
+        <p>That is a real answer to a real question, arrived at the only honest way: by
+          building the strongest possible version of the idea and watching it fail. Sealing
+          the yard by standing still was never what made the pieces optional. The pieces are
+          optional because <em>the verbs have redundant answers</em> — whatever one piece can
+          do to a situation, some combination of the other two can also do, given eight
+          turns. Geometry cannot fix that, and the note recommending geometry has been
+          corrected in place so the next session does not spend another night on it.</p>
+        <p>One smaller lesson, and an uncomfortable one. The solver can be run quickly or
+          slowly. Run quickly, the two new boards disagreed with each other: the first
+          reported that the dog was indispensable, the second — one square different — that
+          the Sexton was. Run properly, both claims evaporated. A fast search that finds no
+          answer is weak evidence; a fast search that confidently names a <em>different</em>
+          culprit on each side of a one-square change is not evidence at all. Those numbers
+          will not be reported again, not even as provisional.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 27</div>
