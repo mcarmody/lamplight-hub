@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; thirteen boards tried, and the thirteenth finally makes a piece necessary</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; fourteen boards tried, and the fourteenth makes two pieces necessary</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">181</div>
+        <div class="num ok">184</div>
         <div class="cap">automated tests over the rules, green on every push</div>
       </div>
       <div class="stat">
@@ -793,6 +793,45 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 27</div>
+        <h4>Take away the graves and two pieces become necessary</h4>
+        <p>Phase 3 asks for boards where all three pieces matter &mdash; where you cannot win by
+          ignoring one of them. Until tonight the best any board had managed was <em>one</em>
+          necessary piece, and twelve boards before that managed none. Tonight's board makes
+          <b>two</b> necessary.</p>
+        <p>The plan going in was the one the previous session left: build a night that dumps its
+          work late, so two pieces are forced to act in the same turns. That plan is dead. A sweep
+          of all 46,656 ways of re-timing the board's six arrivals found <b>zero</b> that work
+          &mdash; the best was a third of what the idea needs. The boards are flat in time, and no
+          amount of rescheduling unflattens them.</p>
+        <p>What worked instead was taking something away. The gravedigger is the only piece that
+          can remove a problem permanently, and the board handed him six grave plots. Whenever the
+          night got hard, he simply buried the worst of it, and the other two pieces mopped up
+          what was left &mdash; which is exactly why neither of them was ever necessary. Cut the
+          plots from six to two and he can only bury the two worst things. Everything else has to
+          be held off by somebody, and now there is more of it than the dog can handle alone.</p>
+        <p>The new board &mdash; two graves, a longer night, and the bell tower moved to the south
+          edge so that ringing it pushes things back <em>up</em> the board instead of down into the
+          gate &mdash; was put to the solver at full depth. It found five different ways to win,
+          which is the other thing Phase 3 wants. It could not find a single way to win without the
+          gravedigger, and it could not find one without the dog.</p>
+        <p><b>It did find ways to win without the bell,</b> which the arithmetic had said should be
+          impossible &mdash; and that turned out to be the most useful thing the session produced.
+          The measurement prices every threat as something you have to hold back all night. But a
+          shove doesn't hold anything: it moves a thing somewhere else, and a thing shoved off its
+          route may not need holding again at all. So the numbers were counting work that a
+          well-aimed shove simply deletes. They are an upper bound, not a target. The bell will not
+          be earned by piling on more pressure; it needs work that a shove <em>cannot</em> delete.</p>
+        <p>One more thing fell out of a test failing rather than a search succeeding. The previous
+          board's difficulty was a fluke of arithmetic that existed at exactly one night length
+          &mdash; nine turns, and nowhere else. This one holds across six different night lengths,
+          because starving the gravedigger of graves is a structural change rather than a
+          coincidence. That matters for the remaining nineteen boards: it is a lever that can be
+          pulled again, not a one-off.</p>
+        <p class="meta">184 tests green (+3). <code>45beef6</code></p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 27</div>
