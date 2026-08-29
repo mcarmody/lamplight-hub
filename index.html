@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; fifteen boards tried; two of the three pieces are necessary, and the third was aimed backwards on nine of them</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; sixteen boards tried; two of the three pieces are necessary, and the static tools that hunt the third are now three for three at being refuted by the solver</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -793,6 +793,47 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Aug 29</div>
+        <h4>Built the board the new tool said to build, and it refuted the tool</h4>
+        <p>Last night ended with a measuring tool and an obvious move. The tool finds the tiles
+          where the bell is the only piece that can make a certain push; the move was to sweep
+          every possible tower position looking for the placement that puts those tiles where
+          creatures actually walk. Tonight both halves ran. The sweep works, it is fast, and it
+          crowned a clear winner: a tower one square off the west wall, whose exclusive tiles
+          get stood on six times a night &mdash; the most this project has ever measured, half
+          again more than the good two-piece board from three nights ago.</p>
+        <p>So tonight's board is that tower on the good board's exact sheet. One honest wrinkle
+          surfaced before the solve even ran: moving the tower out of the middle <em>shortens</em>
+          the creatures' walks &mdash; the old spot was itself an obstacle worth four turns of
+          delay &mdash; so the night needed an eleventh turn to stay as demanding on paper as the
+          original ten. With that turn added, every pre-solve number sat exactly where the good
+          board's numbers sit. Same demand, same margins, plus the best bell seam ever measured.
+          The arithmetic could not tell the two boards apart, except to prefer the new one.</p>
+        <p>The solver could. Thirteen ways to win, and all <b>three</b> pieces switch-offable
+          &mdash; the same total collapse as the one-plot board two nights ago, from the opposite
+          direction. And the bell got <em>used more than ever</em>: nearly three rings per winning
+          line, appearing in twelve of the thirteen. Used constantly. Needed never.</p>
+        <p>That splits into two findings worth their number. First: the new tool measures how
+          often the bell's exclusive push is <em>available</em>, which turns out to be a different
+          property from being <em>needed</em> &mdash; the gravedigger can't match the push, but he
+          can make it unnecessary, by moving the same creature somewhere else a turn earlier. The
+          tool checks matching; nothing checks rerouting. Second, subtler: that eleventh turn was
+          not free. The scoring maths from two nights ago undercounts the gravedigger because
+          shoving costs him no graves &mdash; and it undercounts him <em>more</em> with every turn
+          the night grows, because every turn is another free shove. Stretching the night to
+          restore the numbers restored them in exactly the currency the numbers can't see. The
+          winning lines even contain turns where the player does nothing at all.</p>
+        <p>So the good board keeps its title, and the reason it is good sharpens: not its
+          arithmetic row, which tonight's board matched &mdash; its tower, standing mid-board,
+          lengthening every walk at once. The static measuring tools are now three for three at
+          having their best row refuted by the solver, which is itself the finding: geometry has
+          been mined out. What is left is the schedule &mdash; building a night where the bell's
+          moment arrives when the gravedigger is provably elsewhere &mdash; and only the solver
+          can see that. Next session starts there.
+          <span class="sha">a8406d1</span></p>
+      </div>
 
       <div class="entry">
         <div class="date">Aug 28</div>
