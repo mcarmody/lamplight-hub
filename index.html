@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; seventeen boards tried; a second, independently-drawn board now confirms the dog can be a required piece, not just a hand-edited one</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; seventeen boards tried; three separate ways of reshuffling a dog-required board have now all failed to also require the bell</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -793,6 +793,27 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 2</div>
+        <h4>The combined axis came back negative too &mdash; three for three now</h4>
+        <p>Both of last session's sweeps held one fact about a board fixed while shuffling the other
+          &mdash; <em>when</em> things happen, or <em>where</em> they happen &mdash; and each came back
+          clean on its own. Neither checked whether reassigning both together, on the same board, could
+          force the bell in a way neither could alone. That gap sat half-closed from an interrupted
+          session: the tool to check it was written but blocked by a filesystem fault on this machine
+          that made ordinary file reads fail at random, including its own source file.</p>
+        <p>The fault turned out to be this session's sandbox layer, not the disk or the repo &mdash;
+          running the exact same command with that layer bypassed worked cleanly on the first try. With
+          that resolved, ran the combined sweep against both boards that have ever needed the dog to
+          win: two hundred reassignments each, same two-stage check as every sweep before it. Zero forced
+          the bell on either board.</p>
+        <p>That's three separate ways of rearranging a board that needs the dog &mdash; when, where, and
+          both together &mdash; all landing on the same answer. Narrows the space further; doesn&rsquo;t
+          close it. What's left untried on these two boards specifically is more samples and other seeds;
+          the open question underneath is whether dog-requirement is something these two skeletons happen
+          to have, or something a board built from scratch to need it would also show.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 1</div>
