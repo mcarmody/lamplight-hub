@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; twenty-two boards tried, and the tightest one turned up something bigger than the board: you win these nights by making the dead late, not by burying them</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; twenty-two boards tried, and the tightest one turned up something bigger than the board: two to four of the six dead are never dealt with at all, just left too far from the gate when dawn comes</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -796,37 +796,48 @@
 
       <div class="entry">
         <div class="date">Sep 5</div>
-        <h4>Six sessions asking why the bell is never needed, and the answer is that nothing is</h4>
+        <h4>Half the dead are never dealt with at all, and that is how you win</h4>
         <p>The bell is the piece nothing has ever needed. It owns four tiles outright &mdash; the ones beside
           the tower, where the Sexton physically cannot get behind a body to push it outward &mdash; so the
           theory was that a grave one tile further out is a burial only a bell can make. Three boards tonight,
-          each built to close a hole in the one before it: the last of them shuts every sideways shove off the
-          trap tile, has the monster rise there on turn one so nobody can be standing in the way, and sets the
-          losing number to one so letting it walk through the gate is not an option. It is the tightest board
-          this ruleset can produce. The bell was rung in ten of its eleven winning lines and needed in none.</p>
+          each closing a hole in the one before it. The last of them shuts every sideways shove off the trap
+          tile, has the monster rise there on turn one so nobody can be standing in the way, and sets the losing
+          number to one, so letting it walk through the gate is not an option. It is the tightest board this
+          ruleset can produce. The bell was rung in ten of its eleven winning lines and needed in none.</p>
         <p>At which point we finally did the thing that should have been done in the first week. The solver
           answers "is the bell needed?" by replaying the board with the bell switched off and seeing whether it
           still wins &mdash; and in six sessions of asking that question, <strong>nobody had ever printed the
-          line it wins with.</strong> Everything we believed about why the bell is optional had been
-          reconstructed from solutions that <em>use</em> the bell. It took about ten seconds to print.</p>
-        <p>Six monsters, all of which must be stopped, six graves to stop them with. The winning line stops all
-          six and buries <em>one</em>. Another buries none at all &mdash; nothing removed, nothing through the
-          gate, night survived. <strong>You do not have to bury them. You only have to make them late.</strong>
-          The night is eight turns long, and something still walking at dawn has been beaten just as thoroughly
-          as something in a hole. Standing in a doorway does it. The dog does it by making them turn aside. An
-          open grave does it, because they walk around holes rather than into them. Consecrated ground does it
-          by halving their speed. That is four ways to stall against three ways to remove, and the solver picks
-          stalling every time.</p>
-        <p>So the bell question was the wrong question, and it was the wrong question for the same reason the
-          shovel never gets used to fill a grave either: <strong>removal is the optional half of this game.</strong>
-          No arrangement of the board can force a removal move while simply running out the clock wins the same
-          night. It also explains the pieces that <em>are</em> required &mdash; the Sexton and the dog both
-          occupy tiles and bend paths, and the bell is bolted to its tower and can do neither.</p>
-        <p>That is a much better problem than the one we thought we had, and there is a one-line experiment
+          line it wins with.</strong> Every explanation we had written was reconstructed from solutions that
+          <em>use</em> the bell. It took about ten seconds to print, and it is now a permanent command so it
+          cannot happen again.</p>
+        <p>Six monsters, all of which must be stopped. Here is how a winning night actually ends: one of them
+          filled in and named in the register, one or two sitting in open graves, and <strong>two to four of
+          them still walking around</strong> &mdash; never buried, never pushed into anything, never rung. On
+          this board it is always the same three, found at the far western edge at dawn, most of the field away
+          from the gate they were walking to. They were beaten by the clock and the dog and the distance, and
+          by nothing else.</p>
+        <p>That is the finding, and it is about the whole game rather than the bell. The board's difficulty
+          number counts how many things must not <em>reach</em> the gate, and every one of us &mdash; the
+          design notes, the tooling, six sessions of reasoning &mdash; had been reading it as how many things
+          must be <em>removed</em>. They are not the same number. The night is eight turns long, and something
+          still walking at dawn has been beaten just as thoroughly as something in a hole. Standing in a
+          doorway does it. The dog does it by making them turn aside. An open grave does it, because they walk
+          around holes rather than into them. Consecrated ground does it by halving their speed. Four ways to
+          stall against three ways to remove, and the solver takes the stall.</p>
+        <p>Two things fall out of that. The shovel's fill-in move is nearly decorative &mdash; used once a
+          night or not at all, because falling into a hole is what stops something and filling it in only
+          writes the name down afterwards. And the bell was the wrong question: it does real work, it did
+          bury tonight's monster in tonight's trap exactly as drawn, but the version of the night with the bell
+          switched off buries it in the same grave anyway, because a thing walks into a hole when it has run
+          out of anywhere else to go. The two pieces that <em>are</em> always needed are the Sexton and the dog
+          &mdash; the two that can stand somewhere and change where things walk. The bell is bolted to its
+          tower and can do neither.</p>
+        <p>So there is a much better problem to solve than the one we thought we had, and a one-line experiment
           waiting: count anything still standing at dawn as though it reached the gate. Stalling stops being
-          free, every delay becomes a bill that comes due, and burying things becomes mandatory everywhere at
-          once. It is a single condition in the losing check and the entire back catalogue of boards can be
-          re-run against it. Whether to take that swing is Mike's call. What is off the table is a seventh
+          free, four survivors becomes an instant loss, and burying things becomes mandatory everywhere at
+          once. It is a single condition in the losing check, and the entire back catalogue of boards can be
+          re-run against it &mdash; including the four already signed off, which have never been checked
+          against any of this. Whether to take that swing is Mike's call. What is off the table is a seventh
           board built the same way as the six before it.</p>
       </div>
 
