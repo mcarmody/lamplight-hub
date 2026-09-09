@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; twenty-two boards tried, and the tightest one turned up something bigger than the board: two to four of the six dead are never dealt with at all, just left too far from the gate when dawn comes</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; the fix for the dominant-piece problem is built and proven; it is waiting on Mike's call, not on more boards</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — kill gate passed Aug 24, 12 days ahead of schedule</div>
+    <div class="stamp">Phase 3 — window closes Sep 11, two days out, blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -502,8 +502,8 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">194</div>
-        <div class="cap">automated tests over the rules, green on every push</div>
+        <div class="num ok">198</div>
+        <div class="cap">automated tests over the rules and solver</div>
       </div>
       <div class="stat">
         <div class="num ok">6</div>
@@ -793,6 +793,25 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 9</div>
+        <h4>The clock-pricing idea is built now, waiting on nobody but Mike</h4>
+        <p>Four nights since the last session, and the question left on the desk Sep 5 &mdash; count anything
+          still standing at dawn as though it got through &mdash; had not been answered yet. Rather than sit
+          idle another night, it got built: a single switch (<code>dawnStandingCountsThroughGate</code>) that
+          re-prices the ending, off by default, touching nothing about how a night actually plays. One command,
+          <code>npm run solve -- --dawn-gate</code>, now re-solves the whole board catalogue under it and writes
+          a separate report so the real one stays untouched until there is an answer to commit to.</p>
+        <p>Ran it. Under the new pricing, three of the four "finished" boards flip from every piece being
+          optional to <strong>two of the three being required</strong> &mdash; the Sexton and the dog both have
+          to show up, only the bell stays skippable. The fourth flips to just the Sexton being required. That is
+          a real change in the right direction, on the first try, with no board rewritten to get there.</p>
+        <p>It is still not a decision. It is now a fast one: whichever way Mike calls it, the re-solve that
+          answer needs already exists and runs in about a minute. Six new tests, all green;
+          <code>docs/SOLVER-REPORT-DAWN-GATE.md</code> is in the repo to read cold. Phase 3's window closed two
+          days ago and the phase is still blocked on this one call, not on more boards.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 5, later</div>
