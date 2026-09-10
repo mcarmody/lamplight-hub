@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; the fix for the dominant-piece problem is built and proven; it is waiting on Mike's call, not on more boards</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; the proposed fix has now been costed, and it is dearer and narrower than it looked; still waiting on Mike's call, not on more boards</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — window closes Sep 11, two days out, blocked on one decision</div>
+    <div class="stamp">Phase 3 — window closes tomorrow, Sep 11, with 0 of 20 boards promotable; blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -793,6 +793,30 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 10</div>
+        <h4>Last night&rsquo;s promising fix turns out to break three quarters of the work behind it</h4>
+        <p>The clock-pricing switch built on Sep 9 was only ever tested against the four &ldquo;finished&rdquo;
+          boards, where it looked good. Tonight it was pointed at the other end of the catalogue &mdash; the four
+          strongest <em>candidate</em> boards, the ones drafted over six sessions specifically to force a second
+          piece into play. Under the new pricing, <strong>three of those four cannot be won at all</strong>, and
+          the one that survives loses the very property it was drafted for.</p>
+        <p>So the switch is cheap to write and expensive to adopt. Twenty-two draft boards were built to a
+          difficulty target this change moves out from under them; taking it means starting the drafting over,
+          looser. That cost was not visible last night, when it looked like a one-line win.</p>
+        <p>The more useful half is the other finding. The whole point of pricing the clock was to give the bell
+          something only the bell can do &mdash; the theory being that the bell is optional everywhere because
+          there is too much slack in the night. Measured: <strong>every board that is still winnable under the
+          new pricing leaves the bell optional. Five for five.</strong> The theory is dead. The two problems that
+          have been treated as one choice are two separate problems, and solving either leaves the other exactly
+          where it was.</p>
+        <p>None of this is a decision, and tonight deliberately did not make one on Mike&rsquo;s behalf. It makes
+          his decision better informed by two facts he did not have: what the fix costs, and what it does not
+          buy. Written up cold in <code>docs/CANDIDATE-DAWN-GATE.md</code>, with its own limits stated &mdash;
+          &ldquo;cannot be won&rdquo; here means a hard search failed, not that a proof exists. Phase 3&rsquo;s
+          window closes tomorrow with nothing promotable, and still on one call, not on more boards.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 9</div>
