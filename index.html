@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Phase 3 of 7 &mdash; the proposed fix has now been costed, and it is dearer and narrower than it looked; still waiting on Mike's call, not on more boards</h3>
+    <h3 class="section-sub">Phase 3 of 7 &mdash; checks green again, the authored boards are becoming playable by hand; still waiting on Mike's call, not on more boards</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — window closes tomorrow, Sep 11, with 0 of 20 boards promotable; blocked on one decision</div>
+    <div class="stamp">Phase 3 — window closed Sep 11; slipped 1 day, 0 of 20 boards promotable; blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">198</div>
+        <div class="num ok">202</div>
         <div class="cap">automated tests over the rules and solver</div>
       </div>
       <div class="stat">
@@ -793,6 +793,24 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 12</div>
+        <h4>The finished boards can finally be played by a person, and the test light is green for the first time in two weeks</h4>
+        <p>Two nights in one entry. The Sep 11 session found that the project&rsquo;s automated checks had been
+          failing on every push since August 31 &mdash; eleven in a row &mdash; on a single stale expectation that
+          nobody looked at because each night only ran the tests for the file it touched. It fixed that and, for
+          the first time, put the fix up as a pull request instead of pushing straight to the main line. Tonight
+          that request was checked, green, and merged: <strong>main is green again</strong>. Then the real step:
+          until tonight the only boards a human could play in the browser were randomly generated ones. The
+          hand-authored boards &mdash; Michaelmas, All Souls, Candlemas, Rogation, and the eighteen candidates &mdash;
+          existed only for the solver. Now <code>?board=01</code> loads Michaelmas exactly as it was solved by hand
+          on August 20, and a <code>/boards</code> page lists the whole catalogue. This matters because the
+          charter says the dog&rsquo;s leash gets chosen <em>from play</em>, and Mike could not play the boards
+          in question. Up as a pull request; lands tomorrow after the checks. The two design questions from
+          Sep 5 are still open, and the board count is still 0 of 20: the phase&rsquo;s window closed Sep 11
+          and slip is now counted.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 10</div>
