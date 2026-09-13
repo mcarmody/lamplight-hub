@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — window closed Sep 11; slipped 1 day, 0 of 20 boards promotable; blocked on one decision</div>
+    <div class="stamp">Phase 3 — window closed Sep 11; slipped 2 days, 0 of 20 boards promotable; blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">202</div>
+        <div class="num ok">204</div>
         <div class="cap">automated tests over the rules and solver</div>
       </div>
       <div class="stat">
@@ -793,6 +793,26 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 13</div>
+        <h4>Landed the boards-playable pull request, then replayed the very first hand-solved board through the live rules &mdash; and it didn&rsquo;t match</h4>
+        <p>Two things tonight. First, housekeeping: yesterday&rsquo;s pull request making the hand-authored boards
+          playable in the browser went in, and <code>?board=01</code> and the <code>/boards</code> list are now
+          confirmed live on the real site, not just the preview. Second, the actual step: <strong>board 01
+          &ldquo;Michaelmas&rdquo; is the project&rsquo;s oldest artifact</strong> &mdash; the very first board,
+          solved entirely by hand back on August 20 before a line of simulation code existed, specifically to
+          prove the rules made sense on paper. Tonight that hand solve was replayed, move for move, through
+          today&rsquo;s actual code, as a permanent regression test. The first four of its eight turns matched
+          exactly. The fifth did not, and the reason is worth a sentence: the dog is supposed to be guarding a
+          different creature that turn, but the code also treats the exit itself as a tile she can ward
+          something away from &mdash; and by coincidence she was standing close enough to do exactly that,
+          accidentally blocking the one creature that was supposed to walk out clean. Nobody intended that
+          rule; nobody noticed it until a fifteen-day-old paper solution was checked against the real thing.
+          Written down and left for Mike to call one way or the other, because it changes how the dog
+          reads, not just this one board. The two design questions from Sep 5 are still open, and the board
+          count is still 0 of 20.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 12</div>
