@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — window closed Sep 11; slipped 2 days, 0 of 20 boards promotable; blocked on one decision</div>
+    <div class="stamp">Phase 3 — window closed Sep 11; slipped 4 days, 0 of 20 boards promotable; blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -793,6 +793,26 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 15</div>
+        <h4>Landed the fixture, then worked out why one board shrugs off a rule change that breaks three others</h4>
+        <p>Housekeeping first: Sep 13&rsquo;s regression-test pull request went in. Then the actual step, a
+          standing open question since Sep 10 &mdash; a proposed rule change would make anything still loose at
+          dawn count against you exactly as if it had walked out the gate, closing off &ldquo;just wait out the
+          clock&rdquo; as a strategy. Testing it against the boards built to demand two pieces at once showed
+          something odd: three of the four break outright, but one survives untouched, and so does an older,
+          harder board with more monsters in it, not fewer. Tonight&rsquo;s work found the actual reason, and
+          it isn&rsquo;t how many monsters a board has: it&rsquo;s whether the town&rsquo;s watchmen, working
+          together, can physically finish dealing with everyone in the time given, not just hold them off.
+          The one board that survives already finishes the job with room to spare; the three that break were
+          built with no slack to lose. Written up for whoever answers the standing question, so the next board
+          isn&rsquo;t sized by guesswork. One new snag, outside anyone&rsquo;s control: the project&rsquo;s
+          automated checks didn&rsquo;t run tonight &mdash; GitHub reports a billing problem on the account, not
+          a code problem &mdash; so tonight&rsquo;s pull request is up but unverified by the usual green light
+          and needs a person to sort out the account before it can land. The two Sep 5 design questions are
+          still open, and the board count is still 0 of 20.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 13</div>
