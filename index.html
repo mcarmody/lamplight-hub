@@ -492,7 +492,7 @@
       <div class="phase"><span class="n">7</span><span class="label">Depth</span></div>
     </div>
 
-    <div class="stamp">Phase 3 — window closed Sep 11; slipped 4 days, 0 of 20 boards promotable; blocked on one decision</div>
+    <div class="stamp">Phase 3 — window closed Sep 11; slipped 5 days, 0 of 20 boards promotable; blocked on one decision</div>
 
     <p class="lede">Phase 1 closed on August 21, and on August 24 Mike played the Phase 2 build on his phone and
       called it: "the prototype seems good." The whole night runs in a browser on a phone: eight turns, every
@@ -502,7 +502,7 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">204</div>
+        <div class="num ok">205</div>
         <div class="cap">automated tests over the rules and solver</div>
       </div>
       <div class="stat">
@@ -793,6 +793,24 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 16</div>
+        <h4>One monster type that shrugs off the dog turned out not to be enough &mdash; found the second way the dog was winning alone, and closed it</h4>
+        <p>A board built weeks ago already used the parish curate, a monster kind that can walk straight past the
+          dog without being turned back. That was meant to stop the dog from winning a night single-handed, and
+          on paper it looked like it had. Checking it properly tonight found it hadn&rsquo;t: the dog doesn&rsquo;t
+          need to turn anyone back if it just stands in the doorway and does nothing at all for eight turns &mdash;
+          nobody arrives, the night is called a win, and it never mattered what kind of monster it was. Widening
+          that board&rsquo;s gate from a narrow two-tile door to the whole width of the wall fixed it: one dog can
+          no longer stand in six doorways at once, so for the first time on any board in this project, both the
+          watchman and the dog are individually necessary, not just one or the other. Along the way, widening that
+          gate also turned up a real disagreement between two pieces of the project&rsquo;s own measuring code that
+          were supposed to always agree and quietly didn&rsquo;t &mdash; flagged for a later night, doesn&rsquo;t
+          affect tonight&rsquo;s fix. The account billing problem that stopped Wednesday&rsquo;s pull request from
+          being checked automatically is still unresolved, so tonight&rsquo;s also sits unverified by the usual
+          green light. The two Sep 5 design questions are still open, and the board count is still 0 of 20.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 15</div>
