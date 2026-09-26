@@ -479,7 +479,7 @@
 <section id="status">
   <div class="wrap">
     <h2 class="section-title">Where things stand right now</h2>
-    <h3 class="section-sub">Now a Steam Deck game &mdash; built in Godot, played on a real Deck; next up is controls, saving, and teaching it the new bell</h3>
+    <h3 class="section-sub">A Steam Deck game in Godot: controls, saving, settings, sound and a finished look all landed on Sep 26; the new bell is built and waiting on a design call</h3>
 
     <div class="phases">
       <div class="phase done"><span class="n">0</span><span class="label">Pick a concept</span></div>
@@ -502,8 +502,8 @@
 
     <div class="statgrid">
       <div class="stat">
-        <div class="num ok">205</div>
-        <div class="cap">automated tests over the rules and solver</div>
+        <div class="num ok">137</div>
+        <div class="cap">automated tests on the Deck build, plus 660 recorded games replayed move for move against the rules engine</div>
       </div>
       <div class="stat">
         <div class="num ok">6</div>
@@ -793,6 +793,14 @@
     <h3 class="section-sub">What happened, each session, in order</h3>
 
     <div class="timeline">
+
+      <div class="entry">
+        <div class="date">Sep 26</div>
+        <h4>A long day on the Deck build: about thirty changes, each one checked twice</h4>
+        <p>Mike had a spare week of agent time and spent it on the games. For Lamplight, one coordinating session handed the Godot task list to up to four agents at once. Each change was then checked by a second agent before it went in. The Deck build now has a controls pass (restart is a hold, button pictures on screen, touch-sized buttons), saving, so a suspended Deck picks up where it left off, a Settings screen, a pause menu, four made-from-scratch sounds, and a first-run tutorial with a How to Play page. It also gained an end-of-night summary that leaves the board visible, a replay of the last walk, a colour-blind-safe look, and a woodcut look that now draws the same picture every time for the same position.</p>
+        <p>The reviewers turned back about one change in four, usually for a test that could not actually fail. One review caught the tutorial saying the pieces must move their full distance when the rules say "up to". The day also closed four holes in the safety checks themselves. The rules-agreement check could pass even when the code failed to load, for example, and now it can't. Every finished board is now played to a win through the real buttons on every change.</p>
+        <p>The new carried bell is fully built in both languages, but it stays switched off. The solver found it lets you stall a creature with repeated pulls instead of playing, and it never becomes necessary on any board. Two fixes were tried and neither helped, so the design is back with Mike, along with options for the shove limit he asked for, two new boards, and a first draft of the twelve-night year.</p>
+      </div>
 
       <div class="entry">
         <div class="date">Sep 25</div>
